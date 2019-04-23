@@ -16,27 +16,27 @@ $j(document).ready(function()
     JOIN Students s
       ON s.ID = att.StudentID
     JOIN Attendance_Code attc
-      ON att.Attendance_CodeID = attc.ID
-    JOIN calendar_day cd
-      ON att.calendar_dayid = cd.id
-     AND att.periodid = 0
-    JOIN bell_schedule_items bsi
-      ON cd.bell_schedule_id = bsi.bell_schedule_id
-     AND bsi.daily_attendance_code = 1
+      ON Att.Attendance_CodeID = attc.ID
+    JOIN Calendar_day cd
+      ON att.Calendar_DayId = cd.id
+     AND att.PeriodId = 0
+    JOIN Bell_Schedule_Items bsi
+      ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
+     AND bsi.Daily_Attendance_Code = 1
     JOIN CC cc
       ON cc.StudentID = att.StudentID
     LEFT OUTER JOIN Attendance att2
-      ON att2.calendar_dayid=att.calendar_dayid
+      ON att2.Calendar_DayId=att.Calendar_DayId
      AND att2.Att_Mode_Code = 'ATT_ModeMeeting'
-     AND att.studentid=att2.studentid
-     AND att2.periodid=bsi.period_id
+     AND att.StudentId=att2.StudentId
+     AND att2.PeriodId=bsi.Period_Id
 
     WHERE att.Att_Mode_Code = 'ATT_ModeDaily'
       AND s.SchoolID = ~(curschoolid)
-      AND trunc(att.Att_Date) = trunc(sysdate)
+      AND TRUNC(att.Att_Date) = TRUNC(sysdate)
       AND attc.ATT_Code IS NOT NULL
 
-    ORDER BY s.lastfirst;]*/
+    ORDER BY s.LastFirst;]*/
     attRows.push("~(student)|~(daily)|~(code)");
     /*[/tlist_sql]*/
 
