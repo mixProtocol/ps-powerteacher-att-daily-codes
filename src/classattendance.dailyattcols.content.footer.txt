@@ -1,0 +1,9 @@
+<script type="text/javascript">
+
+    /* append headers for attCode and attDescription */
+    var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:5%;">Daily</th>'
+    $j("th.cvDemarcation:last").after(dailyAttThs);
+    /* append the td per-student */
+    var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:5%;">--</td>'
+    $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
+</script>
