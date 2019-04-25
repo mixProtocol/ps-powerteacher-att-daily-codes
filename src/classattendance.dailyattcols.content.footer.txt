@@ -1,54 +1,54 @@
 <script type="text/javascript" class="dailyAttScript">
-$j(document).ready(function()
-{
-    // append headers for attCode and attDescription
-    var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:5%;">Daily</th>'
-    $j("th.cvDemarcation:last").after(dailyAttThs);
-    // append the td per-student
-    var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:5%;">--</td>'
-    $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
-    
-    var attRows = new Array(0);
-
-    /*~[tlist_sql;
-    SELECT s.lastfirst student, attc.description daily, attc.ATT_Code code
-    FROM Attendance att
-    JOIN Students s
-      ON s.ID = att.StudentID
-    JOIN Attendance_Code attc
-      ON Att.Attendance_CodeID = attc.ID
-    JOIN Calendar_day cd
-      ON att.Calendar_DayId = cd.id
-     AND att.PeriodId = 0
-    JOIN Bell_Schedule_Items bsi
-      ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
-     AND bsi.Daily_Attendance_Code = 1
-    JOIN CC cc
-      ON cc.StudentID = att.StudentID
-    LEFT OUTER JOIN Attendance att2
-      ON att2.Calendar_DayId=att.Calendar_DayId
-     AND att2.Att_Mode_Code = 'ATT_ModeMeeting'
-     AND att.StudentId=att2.StudentId
-     AND att2.PeriodId=bsi.Period_Id
-
-    WHERE att.Att_Mode_Code = 'ATT_ModeDaily'
-      AND s.SchoolID = ~(curschoolid)
-      AND TRUNC(att.Att_Date) = TRUNC(sysdate)
-      AND attc.ATT_Code IS NOT NULL
-
-    ORDER BY s.LastFirst;]*/
-    attRows.push("~(student)|~(daily)|~(code)");
-    /*[/tlist_sql]*/
-
-  // iterate through each element of the array
-  for (i=0;i < attRows.length;i++){
-    // get the row data and split into an array using the pipe 
-    // character as the delimiter
-    var studentData = attRows[i].split("|");
-
-    // look for the row w/ a td.cvDemarcation that matches the student
-    // name and replace the Daily TD values w/ the DailyAtt code and descr
-    $j("tr td.cvDemarcation:Contains('" + studentData[0].replace("'","\\'") + "')").parent().find('td.attCode').html(studentData[2]).next('td.attDescr').html(studentData[1]);
-  }
-});
-</script>
+  $j(document).ready(function()
+  {
+      // append headers for attCode and attDescription
+      var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
+      $j("th.cvDemarcation:last").after(dailyAttThs);
+      // append the td per-student
+      var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
+      $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
+      
+      var attRows = new Array(0);
+  
+      /*~[tlist_sql;
+      SELECT
+          s.lastfirst student,
+          attc.ATT_Code code,
+          attc.description daily
+      FROM Attendance att
+      JOIN Students s
+        ON s.ID = att.StudentID
+      JOIN Attendance_Code attc
+        ON att.Attendance_CodeID = attc.ID
+      JOIN Calendar_day cd
+        ON att.Calendar_DayId = cd.id 
+      JOIN Bell_Schedule_Items bsi
+        ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
+       AND bsi.Daily_Attendance_Code = 1
+      JOIN CC cc
+        ON cc.StudentID = att.StudentID
+      
+      WHERE att.Att_Mode_Code = 'ATT_ModeDaily'
+        AND s.SchoolID = ~(curschoolid)
+        AND TRUNC(att.Att_Date) = TRUNC(sysdate)
+        AND attc.ATT_Code IS NOT NULL
+        AND cd.SchoolId = ~(curschoolid)
+        AND att.PeriodId = 0
+  
+      ORDER BY s.LastFirst;]*/
+      attRows.push("~(student)|~(code)|~(daily)");
+      /*[/tlist_sql]*/
+  
+    // iterate through each element of the array
+    for (i=0; i<attRows.length; i++){
+      // get the row data and split into an array using the pipe 
+      // character as the delimiter
+      var studentData = attRows[i].split("|");
+  
+      // look for the row w/ a td.cvDemarcation that matches the student
+      // name and replace the Daily TD values w/ the DailyAtt code and descr
+      // the \\' is needed for names containing an apostrophe/single-quote
+      $j("tr td.cvDemarcation:Contains('" + studentData[0].replace("'","\\'") + "')").parent().find('td.attCode').html(studentData[1]).next('td.attDescr').html(studentData[2]);
+    }
+  });
+  </script>
