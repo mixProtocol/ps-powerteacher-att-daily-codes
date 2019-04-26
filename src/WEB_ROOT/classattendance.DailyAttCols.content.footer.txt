@@ -5,7 +5,7 @@
       var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
       $j("th.cvDemarcation:last").after(dailyAttThs);
       // append the td per-student
-      var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
+      var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">--</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
       $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
       
       var attRows = new Array(0);
@@ -15,8 +15,8 @@
           s.lastfirst student,
           attc.ATT_Code code,
           attc.description daily
-      FROM Attendance att
-      JOIN Students s
+      FROM Students s
+      JOIN Attendance att
         ON s.ID = att.StudentID
       JOIN Attendance_Code attc
         ON att.Attendance_CodeID = attc.ID
