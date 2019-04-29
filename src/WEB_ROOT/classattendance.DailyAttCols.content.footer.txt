@@ -18,22 +18,24 @@
       FROM Students s
       JOIN Attendance att
         ON s.ID = att.StudentID
+       AND att.Att_Mode_Code = 'ATT_ModeDaily'
+       AND att.PeriodId = 0
+       AND TRUNC(att.Att_Date) = TRUNC(sysdate)
       JOIN Attendance_Code attc
         ON att.Attendance_CodeID = attc.ID
       JOIN Calendar_day cd
-        ON att.Calendar_DayId = cd.id 
+        ON att.Calendar_DayId = cd.id
+       AND cd.SchoolId = ~(curschoolid)
       JOIN Bell_Schedule_Items bsi
         ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
        AND bsi.Daily_Attendance_Code = 1
       JOIN CC cc
-        ON cc.StudentID = att.StudentID
+        ON att.StudentID = cc.StudentID
+       AND cc.SectionID = ~(rn)
       
-      WHERE att.Att_Mode_Code = 'ATT_ModeDaily'
+      WHERE
         AND s.SchoolID = ~(curschoolid)
-        AND TRUNC(att.Att_Date) = TRUNC(sysdate)
         AND attc.ATT_Code IS NOT NULL
-        AND cd.SchoolId = ~(curschoolid)
-        AND att.PeriodId = 0
   
       ORDER BY s.LastFirst;]*/
       attRows.push("~(student)|~(code)|~(daily)");
