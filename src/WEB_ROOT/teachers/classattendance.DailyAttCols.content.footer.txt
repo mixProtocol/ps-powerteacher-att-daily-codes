@@ -31,7 +31,7 @@
        AND bsi.Daily_Attendance_Code = 1
       JOIN CC cc
         ON att.StudentID = cc.StudentID
-       AND cc.SectionID = ~(rn)
+       AND TO_CHAR(cc.SectionID) = TO_CHAR('~(gpv.sectionid)')
       
       WHERE s.SchoolID = ~(curschoolid)
         AND attc.ATT_Code IS NOT NULL
