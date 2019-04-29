@@ -20,7 +20,7 @@
         ON s.ID = att.StudentID
        AND att.Att_Mode_Code = 'ATT_ModeDaily'
        AND att.PeriodId = 0
-       AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
+       AND TRUNC(att.Att_Date) = TRUNC(sysdate)
       JOIN Attendance_Code attc
         ON att.Attendance_CodeID = attc.ID
       JOIN Calendar_day cd
