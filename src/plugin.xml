@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		description="Daily Attendance Codes in PowerTeacher Meeting Attendance"
-		name="Daily AttCodes in PowerTeacher Meeting Attendance"
-		version="20190426.01"
+		description="Daily Attendance Codes in PowerTeacher Meeting Att"
+		name="Daily AttCodes in PowerTeacher Meeting"
+		version="20190429.01"
 		xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 		
 	<publisher name="George Skuse">
