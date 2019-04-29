@@ -2,7 +2,7 @@
 <plugin xmlns="http://plugin.powerschool.pearson.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		description="Daily Attendance Codes in PowerTeacher Meeting Att"
-		name="Daily AttCodes in PowerTeacher Meeting"
+		name="Daily AttCodes in PT Meeting Attendance"
 		version="20190429.01"
 		xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 		
