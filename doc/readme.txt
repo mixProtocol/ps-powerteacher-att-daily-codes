@@ -5,8 +5,9 @@ This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance
 
 The code was originally based on Brian Sizer's "Class Attendance with inline daily attendance display" customization from the Exchange, though reworked to link lookup students based on ccid values rather than names.
 
-Release History: 
-1.0 / 20190429.01 - Initial Release
+Release History:
+1.01 / 20190429.02 - Bugfix for PSv.11 compatibility
+1.00 / 20190429.01 - Initial Release
 
 Installation
 Install in System > System Settings > Plugin Management Configuration  
