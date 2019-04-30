@@ -7,6 +7,8 @@
       // append the td per-student
       var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">--</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
       $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
+      // increase the colspan of sectionheader_sectID rows (from multi-section view)
+      $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
       
       var attRows = new Array(0);
   
@@ -20,7 +22,7 @@
         ON s.ID = att.StudentID
        AND att.Att_Mode_Code = 'ATT_ModeDaily'
        AND att.PeriodId = 0
-       AND TRUNC(att.Att_Date) = TRUNC(sysdate)
+       AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
       JOIN Attendance_Code attc
         ON att.Attendance_CodeID = attc.ID
       JOIN Calendar_day cd
@@ -31,8 +33,9 @@
        AND bsi.Daily_Attendance_Code = 1
       JOIN CC cc
         ON att.StudentID = cc.StudentID
-       AND ( TO_CHAR(cc.SectionID) = TO_CHAR('~(gpv.sectionid)')
-             OR 'MultiMeeting' = '~(gpv.pagetype)')
+       AND ( TO_CHAR(cc.SectionID) LIKE TO_CHAR('~(gpv.sectionid)')
+             OR TO_CHAR(cc.SectionID) LIKE '~(rn)'
+             OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
  
       
       WHERE s.SchoolID = ~(curschoolid)
