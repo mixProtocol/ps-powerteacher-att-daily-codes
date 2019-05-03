@@ -36,7 +36,9 @@
        AND ( TO_CHAR(cc.SectionID) LIKE TO_CHAR('~(gpv.sectionid)')
              OR TO_CHAR(cc.SectionID) LIKE '~(rn)'
              OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
- 
+      JOIN SectionTeacher st
+        ON cc.SectionID = st.SectionID
+       AND st.TeacherID = '~[x:userid]'
       
       WHERE s.SchoolID = ~(curschoolid)
         AND attc.ATT_Code IS NOT NULL
