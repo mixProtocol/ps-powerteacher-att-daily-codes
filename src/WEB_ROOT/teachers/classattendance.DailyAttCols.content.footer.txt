@@ -5,7 +5,7 @@
       var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
       $j("th.cvDemarcation:last").after(dailyAttThs);
       // append the td per-student
-      var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">--</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
+      var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
       $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
       // increase the colspan of sectionheader_sectID rows (from multi-section view)
       $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
@@ -22,9 +22,11 @@
         ON s.ID = att.StudentID
        AND att.Att_Mode_Code = 'ATT_ModeDaily'
        AND att.PeriodId = 0
+       AND att.SchoolId =  ~(curschoolid)
        AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
       JOIN Attendance_Code attc
         ON att.Attendance_CodeID = attc.ID
+       AND attc.SchoolId =  ~(curschoolid)
       JOIN Calendar_day cd
         ON att.Calendar_DayId = cd.id
        AND cd.SchoolId = ~(curschoolid)
@@ -35,11 +37,11 @@
         ON att.StudentID = cc.StudentID
        AND cc.SchoolId = ~(curschoolid)
        AND FLOOR(ABS(cc.TermID))/100 = ~(curyearid)
-       AND ( TO_CHAR(cc.SectionID) LIKE TO_CHAR('~(gpv.sectionid)')
-             OR TO_CHAR(cc.SectionID) LIKE '~(rn)'
+       AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid)')
+             OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
              OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
       JOIN SectionTeacher st
-        ON cc.SectionID = st.SectionID
+        ON ABS(cc.SectionID) = st.SectionID
        AND st.TeacherID = '~[x:userid]'
    
       WHERE s.SchoolID = ~(curschoolid)
