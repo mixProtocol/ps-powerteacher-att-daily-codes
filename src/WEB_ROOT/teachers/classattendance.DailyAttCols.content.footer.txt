@@ -17,22 +17,22 @@
         dataType: 'json',
         cache: 'false',
         url: '/teachers/classattendance.DailyAttendanceCodes.json', 
-        data: {"sectionid": "~(gpv.sectionid)",
-          "frn": "~(frn)",
-          "rn":"~(rn)",
-          "att_period":"~(gpv.att_period)",
-          "att_date":"~(gpv.att_date)",
-          "Att_Mode_Code":"ATT_ModeMeeting",
-          "pagetype":"~(gpv.pagetype)",
-          "ATT_Source_Code":"~(gpv.ATT_Source_Code)",
-          "Period_ID":"~(gpv.Period_ID)"
+        data: {
+          "sectionid" : "~(gpv.sectionid)",
+          "frn" : "~(frn)",
+          "rn" : "~(rn)",
+          "att_period" : "~(gpv.att_period)",
+          "att_date" : "~(gpv.att_date)",
+          "Att_Mode_Code" : "ATT_ModeMeeting",
+          "pagetype" : "~(gpv.pagetype)",
+          "ATT_Source_Code" : "~(gpv.ATT_Source_Code)",
+          "Period_ID" : "~(gpv.Period_ID)"
         },
         success: function(data) {
           for (i=0; i<data.length; i++){
-          // look for the row w/ a ccid_XXXXXX that matches the ccid and
-          // replace the Daily TD values w/ the DailyAtt code and descr
-          var stuCCid = '#ccid_' + data[i].ccId;
-          $j(stuCCid).find('td.attCode').html(data[i].attcd).next('td.attDescr').html(data[i].attdescr);
+            // look for the row w/ a ccid_XXXXXX that matches the ccid and
+            // replace the Daily TD values w/ the DailyAtt code and descr
+            $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd).next('td.attDescr').html(data[i].attdescr);
           }
         } 
       });
