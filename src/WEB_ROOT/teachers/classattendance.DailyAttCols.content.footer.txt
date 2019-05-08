@@ -34,7 +34,10 @@
             // replace the Daily TD values w/ the DailyAtt code and descr
             $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd).next('td.attDescr').html(data[i].attdescr);
           }
-        } 
+        },
+        error: function() {
+          $j('td.attDescr').html('JSON error');  
+        }
       });
     });
   });
