@@ -23,7 +23,7 @@
     JOIN CC cc
       ON att.StudentID = cc.StudentID
      AND cc.SchoolId = ~(curschoolid)
-     AND FLOOR(ABS(cc.TermID))/100 = ~(curyearid)
+     AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid)')
            OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
            OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
