@@ -3,14 +3,22 @@ Daily Attendance Codes in PowerTeacher Meeting Attendance
 Description
 This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance" screen which displays the (non-Null) daily attendance code for the students for the date selected (not always 'Today').
 
-Note: This is a change from the original release.  Versions earlier than 1.10/20190506.01 displayed the current day's daily attendance code, regardless of the date selected on the page.
+New: Version 1.20/20190515.01 improves page load times by deferring the attendance query until after the page has rendered.
+
+Note: Versions earlier than 1.11/20190514.01 did not properly display the daily attendance codes for classes other than full year (sections with a TermID not ending in '00').  All users should upgrade to v1.11 or greater.
 
 The code was originally based on Brian Sizer's "Class Attendance with inline daily attendance display" customization from the Exchange, though reworked to link lookup students based on ccid values rather than names.
 
 Release History:
+1.20 / 20190515.01 - Improved page load times via JSON-based SQL
+1.11 / 20190514.01 - Bugfix for sections that were less than full-year
 1.10 / 20190506.01 - Support for 'Multiple Sections' and dates other than 'Today'
 1.01 / 20190429.02 - Bugfix for PSv.11 compatibility
 1.00 / 20190429.01 - Initial Release
+
+Links:
+PowerSource: https://support.powerschool.com/exchange/view.action?download.id=991
+GitHub: https://github.com/mixProtocol/ps-powerteacher-att-daily-codes
 
 Installation
 Install in System > System Settings > Plugin Management Configuration  
