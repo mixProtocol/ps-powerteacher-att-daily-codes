@@ -1,0 +1,25 @@
+~[if#pluginId.~[gpv:pluginId]>0]
+  ~[if#action.~[gpv:action]=showConfigurePlugin]
+    <script>
+        var plgnName = "Daily AttCodes in PT Meeting Attendance";
+        var plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
+
+        $j.expr[':'].textEquals = function(el, i, m) {
+          var searchText = m[3];
+          var match = $j(el).text().trim().match("^" + searchText + "$")
+          return match && match.length > 0;
+        }
+        custPlgnVer = $j('#breadcrumbs > a[href$="/admin/pluginconsole/plugInConsole.action"]:last:textEquals("~[text:psx.ftl.admin_systemsettings.pluginconsole.plugin_console_dashboard]")')
+          .parent(':contains(' + plgnName + ')')
+          .parentsUntil('body').find('h1:textEquals("' + plgnName  + ' Setup")')
+          .parent().find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginname]")').next('td:textEquals(' + plgnName + ')')
+          .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationplugindesc]")').next('td:textEquals(' + plgnDesc + ')')
+          .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginversion]")').next('td').text()
+        
+        if (custPlgnVer.length > 0) {
+          custPlgnConfigLink = '<tr><td><label>Configure Plugin</label></td><td><a href="/admin/" class="button">Configure</a></td></tr>';
+          $j('#pluginDetailTable').find('tr:last').after(custPlgnConfigLink);
+        }
+    </script>      
+  [/if#action]    
+[/if#pluginId]  
