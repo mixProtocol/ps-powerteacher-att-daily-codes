@@ -1,5 +1,11 @@
-<script type="text/javascript" class="dailyAttScript">
+~[if.pref.ptDailyAttCodesDispLegend=1]
+<div id="legend">
+    <h3>~[text:psx.common.legend]</h3>
+    <p><strong>~[text:psx.html.admin_attendance_view.daily.attendance_codes]</strong> ~[x:att_code_legend;studentschool]</p>
+</div>
+[/if]
 
+<script type="text/javascript" class="dailyAttScript">
   // append headers for attCode and attDescription
   var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
   $j("th.cvDemarcation:last").after(dailyAttThs);
@@ -41,5 +47,4 @@
       });
     });
   });
-
 </script>
