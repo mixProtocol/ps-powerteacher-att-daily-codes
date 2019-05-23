@@ -1,4 +1,5 @@
 [
+  ~[if#sec.security.pagemod=/teachers/classattendance.html]
 	~[tlist_sql; 
     SELECT
         cc.ID AS ccId,
@@ -38,4 +39,5 @@
 	]
 		{"ccId":"~(ccId)","attcd":"~(attcd)","attdescr":"~(attdescr)"},
 	[/tlist_sql]
+	[/if#sec]
 {}]
