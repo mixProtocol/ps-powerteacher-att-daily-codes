@@ -3,6 +3,7 @@
     <script>
         var plgnName = "Daily AttCodes in PT Meeting Attendance";
         var plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
+        var plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html"
 
         $j.expr[':'].textEquals = function(el, i, m) {
           var searchText = m[3];
@@ -17,8 +18,8 @@
           .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginversion]")').next('td').text()
         
         if (custPlgnVer.length > 0) {
-          custPlgnConfigLink = '<tr><td><label>Configure Plugin</label></td><td><a href="/admin/" class="button">Configure</a></td></tr>';
-          $j('#pluginDetailTable').find('tr:last').after(custPlgnConfigLink);
+          custPlgnConfRow = '<tr><td><label>Configure Plugin</label></td><td><a href=' + plgnConfLink +' class="button">Configure</a></td></tr>';
+          $j('#pluginDetailTable').find('tr:last').after(custPlgnConfRow);
         }
     </script>      
   [/if#action]    
