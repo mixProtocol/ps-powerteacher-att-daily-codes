@@ -1,5 +1,6 @@
 [
-  ~[if#sec.security.pagemod=/teachers/classattendance.html]
+  ~[if#sec.security.pagenone=/teachers/classattendance.html]
+  [else#sec]
 	~[tlist_sql; 
     SELECT
         cc.ID AS ccId,
