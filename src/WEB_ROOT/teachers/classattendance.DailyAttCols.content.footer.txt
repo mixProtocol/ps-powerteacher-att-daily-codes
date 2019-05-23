@@ -38,7 +38,11 @@
           for (i=0; i<data.length; i++){
             // look for the row w/ a ccid_XXXXXX that matches the ccid and
             // replace the Daily TD values w/ the DailyAtt code and descr
-            $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd).next('td.attDescr').html(data[i].attdescr);
+            $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd)
+              ~[if#tooltips.pref.ptDailyAttCodesTooltip=1]
+              .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
+              [/if#tooltips]
+              .next('td.attDescr').html(data[i].attdescr);
           }
         },
         error: function() {
