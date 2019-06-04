@@ -1,0 +1,44 @@
+[
+  ~[if#sec.security.pagenone=/teachers/classattendance.html]
+  [else#sec]
+	~[tlist_sql; 
+    SELECT
+        cc.ID AS ccId,
+        attc.ATT_Code AS attcd,
+        attc.description AS attdescr
+    FROM Students s
+    JOIN Attendance att
+      ON s.ID = att.StudentID
+     AND att.Att_Mode_Code = 'ATT_ModeDaily'
+     AND att.PeriodId = 0
+     AND att.SchoolId = ~(curschoolid)
+     AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
+    JOIN Attendance_Code attc
+      ON att.Attendance_CodeID = attc.ID
+     AND attc.SchoolId =  ~(curschoolid)
+    JOIN Calendar_day cd
+      ON att.Calendar_DayId = cd.id
+     AND cd.SchoolId = ~(curschoolid)
+    JOIN Bell_Schedule_Items bsi
+      ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
+     AND bsi.Daily_Attendance_Code = 1
+    JOIN CC cc
+      ON att.StudentID = cc.StudentID
+     AND cc.SchoolId = ~(curschoolid)
+     AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
+     AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid)')
+           OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
+           OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
+    JOIN SectionTeacher st
+      ON ABS(cc.SectionID) = st.SectionID
+     AND st.TeacherID = '~[x:userid]'
+  
+    WHERE s.SchoolID = ~(curschoolid)
+      AND attc.ATT_Code IS NOT NULL
+  
+    ORDER BY cc.Id
+	]
+		{"ccId":"~(ccId)","attcd":"~(attcd)","attdescr":"~(attdescr)"},
+	[/tlist_sql]
+	[/if#sec]
+{}]
