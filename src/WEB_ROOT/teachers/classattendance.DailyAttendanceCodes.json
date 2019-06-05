@@ -9,22 +9,22 @@
     FROM Students s
     JOIN Attendance att
       ON s.ID = att.StudentID
+     AND s.SchoolId = att.SchoolId
      AND att.Att_Mode_Code = 'ATT_ModeDaily'
      AND att.PeriodId = 0
-     AND att.SchoolId = ~(curschoolid)
      AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
-     AND attc.SchoolId =  ~(curschoolid)
+     AND s.SchoolId = attc.SchoolId
     JOIN Calendar_day cd
       ON att.Calendar_DayId = cd.id
-     AND cd.SchoolId = ~(curschoolid)
+     AND s.SchoolId = cd.SchoolId
     JOIN Bell_Schedule_Items bsi
       ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
      AND bsi.Daily_Attendance_Code = 1
     JOIN CC cc
       ON att.StudentID = cc.StudentID
-     AND cc.SchoolId = ~(curschoolid)
+     AND s.SchoolId = cc.SchoolId
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid)')
            OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
