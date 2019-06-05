@@ -1,0 +1,47 @@
+<script type="text/javascript" class="dailyAttScript">
+  // append headers for attCode and attDescription
+  var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
+  $j("th.cvDemarcation:last").after(dailyAttThs);
+  // append the td per-student
+  var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
+  $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
+  // increase the colspan of sectionheader_sectID rows (from multi-section view)
+  $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
+  
+  $j(document).ready(function()
+  {
+    $j(function() {
+      $j.ajax({
+        type: 'POST', 
+        dataType: 'json',
+        cache: 'false',
+        url: '/admin/teacherschedules/classattendance.DailyAttendanceCodes.json', 
+        data: {
+          "sectionid" : "~(gpv.sectionid)",
+          "frn" : "~(frn)",
+          "rn" : "~(rn)",
+          "att_period" : "~(gpv.att_period)",
+          "att_date" : "~(gpv.att_date)",
+          "Att_Mode_Code" : "ATT_ModeMeeting",
+          "pagetype" : "~(gpv.pagetype)",
+          "ATT_Source_Code" : "~(gpv.ATT_Source_Code)",
+          "Period_ID" : "~(gpv.Period_ID)"
+        },
+        success: function(data) {
+          for (i=0; i<data.length; i++){
+            // look for the row w/ a ccid_XXXXXX that matches the ccid and
+            // replace the Daily TD values w/ the DailyAtt code and descr
+            $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd)
+              ~[if#tooltips.pref.ptDailyAttCodesTooltip=1]
+              .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
+              [/if#tooltips]
+              .next('td.attDescr').html(data[i].attdescr);
+          }
+        },
+        error: function() {
+          $j('td.attDescr').html('JSON error');  
+        }
+      });
+    });
+  });
+</script>
