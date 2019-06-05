@@ -10,10 +10,10 @@
   $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
   // adjust column widths
   var daNewColWidths = '<col style="width: 20%;"><col style="width: 10%;"><col style="width: 5%;"><col style="width: 20%;"><col style="width: 5%;"><col style="width: 35%;"><col style="width: 5%;">'
-  $j('colgroup#attendance-table-colgroup').html(daNewColWidths)
   
   $j(document).ready(function()
   {
+    $j('colgroup#attendance-table-colgroup').html(daNewColWidths)
     $j(function() {
       $j.ajax({
         type: 'POST', 
