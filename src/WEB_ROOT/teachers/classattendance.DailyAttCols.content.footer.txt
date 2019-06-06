@@ -15,8 +15,9 @@
   // increase the colspan of sectionheader_sectID rows (from multi-section view)
   $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
   
-  $j(document).ready(function()
-  {
+//  commented out as AJAX function doesn't need to run in doc.ready()
+//  $j(document).ready(function()
+//  {
     $j(function() {
       $j.ajax({
         type: 'POST', 
@@ -50,5 +51,5 @@
         }
       });
     });
-  });
+//  });
 </script>
