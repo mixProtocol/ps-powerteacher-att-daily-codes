@@ -6,8 +6,6 @@
   // append the td per-student
   var dailyAttTds ='<td class="attCode" align="right" style="font-size:smaller; width:3em;">-</td><td class="attDescr" align="left" style="font-size:smaller; width:15%;">--</td>'
   $j("tr > td:first-child").siblings("td.cvDemarcation").after(dailyAttTds)
-  // increase the colspan of sectionheader_sectID rows (from multi-section view)
-  $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
   
   $j(function() {
     $j.ajax({
@@ -42,9 +40,11 @@
       }
     });
   });
-  
-  $j(document).ready(function()
-  {
+
+  // increase the colspan of sectionheader_sectID rows (from multi-section view)
+  $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
+
+  $j(document).ready(function() {
     if ($j('#attendance-table-colgroup col').length === 7) {
       // adjust column widths if there are 7 in the colgroup
       var daNewColWidths = '<col style="width: 20%;"><col style="width: 10%;"><col style="width: 5%;"><col style="width: 20%;"><col style="width: 5%;"><col style="width: 35%;"><col style="width: 5%;">'
