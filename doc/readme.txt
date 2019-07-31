@@ -5,11 +5,12 @@ This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance
 
 New: Version 1.30 adds the ability to display the AttCode column in the Admin Portal (on the Attendance page accessible from the Teacher Schedules screen).  This can be optionally enabled/disabled via the new Preferences page (accessible by clicking the Plugin Name in the Plugin Management Console and the clicking the "Configure" button ).  v1.20/20190515.01 improved page load times by deferring the attendance query until after the page has rendered.
 
-Note: Versions earlier than 1.11/20190514.01 did not properly display the daily attendance codes for classes other than full year (sections with a TermID not ending in '00').  All users should upgrade to v1.11 or greater.
+Note: Version 1.30/20190605.01 had an issue on the PowerTeacher portal that prevented attendance codes from displaying for most teachers.  All users should update to the latest release.
 
 The code was originally based on Brian Sizer's "Class Attendance with inline daily attendance display" customization from the Exchange, though reworked to link lookup students based on ccid values rather than names.
 
 Release History:
+1.31 / 20190730.01 - Fixed issue with security from previous release
 1.30 / 20190605.01 - Admin portal (optional); prefs screen; improved JSON security
 1.20 / 20190515.01 - Improved page load times via JSON-based SQL
 1.11 / 20190514.01 - Bugfix for sections that were less than full-year
