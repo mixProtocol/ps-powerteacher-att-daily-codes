@@ -5,7 +5,9 @@
     SELECT
         cc.ID AS ccId,
         attc.ATT_Code AS attcd,
-        attc.description AS attdescr
+        attc.description AS attdescr,
+        DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
+                                                'present','p') AS attstatus
     FROM Students s
     JOIN Attendance att
       ON s.ID = att.StudentID
@@ -35,7 +37,7 @@
   
     ORDER BY cc.Id
 	]
-		{"ccId":"~(ccId)","attcd":"~(attcd)","attdescr":"~(attdescr)"},
+		{"ccId":"~(ccId)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)"},
 	[/tlist_sql]
 	[/if#sec]
 {}]

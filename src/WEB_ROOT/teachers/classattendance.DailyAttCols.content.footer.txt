@@ -1,3 +1,10 @@
+~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1]
+<style>
+  td[data-attstatus='a'] {
+    background-color: pink;
+  }
+</style>
+[/if#redbckgrnd]
 <script type="text/javascript" class="dailyAttScript">
   // append headers for attCode and attDescription
   var dailyAttThs = '<th align="left" class="attCode" style="font-size:smaller; width:3em;">&nbsp</th><th align="left" class="attDescr" style="width:15%;">Daily</th>'
@@ -27,11 +34,11 @@
         for (i=0; i<data.length; i++){
           // look for the row w/ a ccid_XXXXXX that matches the ccid and
           // replace the Daily TD values w/ the DailyAtt code and descr
-          $j('#ccid_' + data[i].ccId).find('td.attCode').html(data[i].attcd)
+          $j('#ccid_' + data[i].ccId).find('td.attCode').attr('data-attstatus',data[i].attstatus).html(data[i].attcd)
             ~[if#tooltips.pref.ptDailyAttCodesTooltip=1]
             .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
             [/if#tooltips]
-            .next('td.attDescr').html(data[i].attdescr);
+            .next('td.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
         }
       },
       error: function() {
