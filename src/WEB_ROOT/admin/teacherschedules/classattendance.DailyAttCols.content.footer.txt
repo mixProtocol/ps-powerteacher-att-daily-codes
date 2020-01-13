@@ -2,7 +2,7 @@
 ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1]
 <style>
   td[data-attstatus='a'] {
-    background-color: pink;
+    background-color: pink !important;
   }
 </style>
 [/if#redbckgrnd]
