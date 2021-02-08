@@ -8,11 +8,13 @@
 [/if#redbckgrnd]
 <style>
   div.dailyAttData {
-    white-space: nowrap;
+    display:inline;
+    white-space:nowrap;
     padding-right:3px;
   }
   div.attCode, div.attDescr {
     display:inline-block;
+    white-space:nowrap;
     min-width:4em;
     padding-left:4px;
     padding-right:4px;
@@ -23,11 +25,11 @@
 </style>
 <script type="text/javascript" class="dailyAttScript">
   // append headers for attCode and attDescription
-  var dailyAttThs = '<div class="dailyAttData"><div class="attCode" align="right"></div><div class="attDescr" align="left">Daily</div></div>'
-  $j("th.cvDemarcation:last").next("th").html(dailyAttThs);
+  var dailyAttThs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
+  $j("th.cvDemarcation:last").next("th").prepend(dailyAttThs);
   // append the td per-student
   var dailyAttTds ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
-  $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").html(dailyAttTds)
+  $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttTds)
   
   $j(function() {
     $j.ajax({
@@ -62,20 +64,5 @@
       }
     });
   });
-
-/* Commented out at this is not needed now that we're using DIVs in the existing TD/TH rather
-   than creating new columns in the table
-   
-  // increase the colspan of sectionheader_sectID rows (from multi-section view)
-  $j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan', parseInt($j('tr[id*="sectionheader_"] td.cvDemarcation').attr('colspan')) + 2)
-
-  $j(document).ready(function() {
-    if ($j('#attendance-table-colgroup col').length === 7) {
-      // adjust column widths if there are 7 in the colgroup
-      var daNewColWidths = '<col style="width: 20%;"><col style="width: 10%;"><col style="width: 5%;"><col style="width: 20%;"><col style="width: 5%;"><col style="width: 35%;"><col style="width: 5%;">'
-      $j('colgroup#attendance-table-colgroup').html(daNewColWidths)
-    }
-  });
-*/
 </script>
 [/if#enabled]
