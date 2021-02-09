@@ -1,12 +1,10 @@
 ~[if#enabled.pref.ptDailyAttCodesAdminPortal=1]
-~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1]
 <style>
+  ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1]
   div.attCode[data-attstatus='a'], div.attDescr[data-attstatus='a'] {
     background-color: pink !important;
   }
-</style>
-[/if#redbckgrnd]
-<style>
+  [/if#redbckgrnd]
   div.dailyAttData {
     display:inline;
     white-space:nowrap;
