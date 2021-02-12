@@ -46,6 +46,7 @@
         "ATT_Source_Code" : "~(gpv.ATT_Source_Code)",
         "Period_ID" : "~(gpv.Period_ID)"
       },
+      // TODO: refactor success as done
       success: function(data) {
         for (i=0; i<data.length; i++){
           // look for the row w/ a ccid_XXXXXX that matches the ccid and
@@ -57,6 +58,7 @@
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
         }
       },
+      // TODO: refactor error as fail
       error: function() {
         $j('div.attDescr').html('JSON error');  
       }

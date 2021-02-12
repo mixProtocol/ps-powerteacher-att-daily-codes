@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		description="Daily Attendance Codes in PowerTeacher Meeting Att"
 		name="Daily AttCodes in PT Meeting Attendance"
-		version="20210208.01"
+		version="20210212.01"
 		xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 		
 	<publisher name="George Skuse">

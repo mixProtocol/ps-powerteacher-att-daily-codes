@@ -1,15 +1,15 @@
 Daily Attendance Codes in PowerTeacher Meeting Attendance
 
 Description
-This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance" screen which displays the (non-Null) daily attendance code for the students for the date selected (not always 'Today').
+This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance" screen which displays the (non-Null) daily attendance code for the students for the date selected (not always 'Today').  The same can optionally be enabled for the similiar pages on the PowerSchool Admin portal.
 
-New: Version 1.30 adds the ability to display the AttCode column in the Admin Portal (on the Attendance page accessible from the Teacher Schedules screen).  This can be optionally enabled/disabled via the new Preferences page (accessible by clicking the Plugin Name in the Plugin Management Console and the clicking the "Configure" button ).  v1.20/20190515.01 improved page load times by deferring the attendance query until after the page has rendered.
+New: Version 1.33/20210211.01 is compatible with PSv20.4+; previous versions of the plugin caused the "Fill Code" button to not work.   All users should All users should upgrade to the latest version.
 
-Note: Version 1.30/20190605.01 had an issue on the PowerTeacher portal that prevented attendance codes from displaying for most teachers.  All users should update to the latest release.
-
-The code was originally based on Brian Sizer's "Class Attendance with inline daily attendance display" customization from the Exchange, though reworked to link lookup students based on ccid values rather than names.
+Note: If the "Show Multiple Sections" button is checked, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
 Release History:
+1.33 / 20210211.01 - Updated for PSv.20.4+ compatibility
+1.32 / 20200113.01 - Internal Use, no public release
 1.31 / 20190730.01 - Fixed issue with security from previous release
 1.30 / 20190605.01 - Admin portal (optional); prefs screen; improved JSON security
 1.20 / 20190515.01 - Improved page load times via JSON-based SQL
