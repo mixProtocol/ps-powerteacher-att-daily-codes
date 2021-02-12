@@ -1,9 +1,9 @@
 Daily Attendance Codes in PowerTeacher Meeting Attendance
 
 Description
-This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance" screen which displays the (non-Null) daily attendance code for the students for the date selected (not always 'Today').  The same can optionally be enabled for the similiar pages on the PowerSchool Admin portal.
+This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance" screen which displays the (non-Null) daily attendance code for the students for the date selected (not always 'Today').  The same can optionally be enabled for the similar pages on the PowerSchool Admin portal.
 
-New: Version 1.33/20210211.01 is compatible with PSv20.4+; previous versions of the plugin caused the "Fill Code" button to not work.   All users should All users should upgrade to the latest version.
+New: Version 1.33/20210211.01 is compatible with PSv20.4+; previous versions of the plugin caused the "Fill Code" button to not work.   All users should upgrade to the latest version.
 
 Note: If the "Show Multiple Sections" button is checked, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
