@@ -1,6 +1,7 @@
 ~[if#pluginId.~[gpv:pluginId]>0]
   ~[if#action.~[gpv:action]=showConfigurePlugin]
-    <script>
+    <script type="text/javascript" class="dailyAttScript">
+      $j(function() {
         var plgnName = "Daily AttCodes in PT Meeting Attendance";
         var plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
         var plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html"
@@ -21,6 +22,7 @@
           custPlgnConfRow = '<tr><td><label>Configure Plugin</label></td><td><a href=' + plgnConfLink +' class="button">Configure</a></td></tr>';
           $j('#pluginDetailTable').find('tr:last').after(custPlgnConfRow);
         }
+      });
     </script>      
   [/if#action]    
 [/if#pluginId]  
