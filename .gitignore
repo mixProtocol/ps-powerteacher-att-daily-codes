@@ -1,2 +1,9 @@
-tmp_local/*
+build/
+tmp/
+tmp_local/
+external/*/bin/*
 src/*.zip
+node_modules/
+.DS_Store
+desktop.ini
+local_notes.txt

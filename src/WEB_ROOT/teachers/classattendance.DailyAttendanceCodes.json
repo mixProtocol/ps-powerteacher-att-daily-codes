@@ -2,10 +2,17 @@
 	~[tlist_sql; 
     SELECT
         cc.ID AS ccId,
+        att.Dcid AS attDcid,
         attc.ATT_Code AS attcd,
         attc.description AS attdescr,
         DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
-                                                'present','p') AS attstatus
+                                                'present','p') AS attstatus,
+        CASE
+          WHEN att.Att_Comment IS NULL THEN 0
+          WHEN LENGTH(TRIM(att.Att_Comment)) > 0 THEN 1
+          ELSE 0
+        END AS hascomment
+
     FROM Students s
     JOIN Attendance att
       ON s.ID = att.StudentID
@@ -38,6 +45,6 @@
   
     ORDER BY cc.Id
 	]
-		{"ccId":"~(ccId)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)"},
+		{"ccId":"~(ccId)","attDcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
 	[/tlist_sql]
 {}]
