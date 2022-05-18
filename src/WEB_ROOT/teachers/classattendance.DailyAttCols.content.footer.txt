@@ -15,8 +15,6 @@
     min-width:4em;
     padding-left:4px;
     padding-right:4px;
-  }
-  td div.attCode, td div.attDescr {
     font-size:smaller;
   }
 </style>
