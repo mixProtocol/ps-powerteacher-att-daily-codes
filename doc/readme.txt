@@ -8,6 +8,7 @@ New: Version 1.33/20210211.01 is compatible with PSv20.4+; previous versions of 
 Note: If the "Show Multiple Sections" button is checked, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
 Release History:
+1.34 / 20230125.01 - Fix 'Configure' button
 1.33 / 20210211.01 - Updated for PSv.20.4+ compatibility
 1.32 / 20200113.01 - Internal Use, no public release
 1.31 / 20190730.01 - Fixed issue with security from previous release
