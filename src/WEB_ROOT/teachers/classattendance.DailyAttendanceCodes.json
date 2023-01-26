@@ -19,7 +19,7 @@
      AND s.SchoolId = att.SchoolId
      AND att.Att_Mode_Code = 'ATT_ModeDaily'
      AND att.PeriodId = 0
-     AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date)'))
+     AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date;sqlText)'))
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
      AND s.SchoolId = attc.SchoolId
@@ -35,7 +35,7 @@
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid)')
            OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
-           OR 'multimeeting' LIKE LOWER('~(gpv.pagetype)') )
+           OR 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)') )
     JOIN SectionTeacher st
       ON ABS(cc.SectionID) = st.SectionID
      AND st.TeacherID = '~[x:userid]'
