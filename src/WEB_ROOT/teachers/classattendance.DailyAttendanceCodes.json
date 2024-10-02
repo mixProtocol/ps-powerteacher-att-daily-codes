@@ -23,12 +23,6 @@
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
      AND s.SchoolId = attc.SchoolId
-    JOIN Calendar_day cd
-      ON att.Calendar_DayId = cd.id
-     AND s.SchoolId = cd.SchoolId
-    JOIN Bell_Schedule_Items bsi
-      ON cd.Bell_Schedule_Id = bsi.Bell_Schedule_Id
-     AND bsi.Daily_Attendance_Code = 1
     JOIN CC cc
       ON att.StudentID = cc.StudentID
      AND s.SchoolId = cc.SchoolId
