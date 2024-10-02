@@ -18,7 +18,6 @@
       ON s.ID = att.StudentID
      AND s.SchoolId = att.SchoolId
      AND att.Att_Mode_Code = 'ATT_ModeDaily'
-     AND att.PeriodId = 0
      AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date;sqlText)'))
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
