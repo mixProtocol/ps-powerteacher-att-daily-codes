@@ -1,3 +1,4 @@
+~[if#enabled.pref.ptDailyAttCodesSubsPortal=1]
 <style>
   /* ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1] */
   div.attCode[data-attstatus='a'], div.attDescr[data-attstatus='a'] {
@@ -68,3 +69,4 @@
     <p><strong>~[text:psx.html.admin_attendance_view.daily.attendance_codes]</strong> ~[x:att_code_legend;studentschool]</p>
 </div>
 [/if]
+[/if#enabled]
