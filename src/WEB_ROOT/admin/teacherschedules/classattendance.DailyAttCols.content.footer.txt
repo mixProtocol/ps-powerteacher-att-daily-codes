@@ -58,8 +58,8 @@
             /* ~[if#attcomment.pref.ptDailyAttCommentIcon=1] */
             // if the student has an attendance comment, then append a div with a linked
             // image to end of the student's .dailyAttData div
-            var dailyAttCommentDiv = '<span class="dailyAttCommentIcon"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></span>';
             if (data[i].hascomment == 1) {
+              var dailyAttCommentDiv = '<span class="dailyAttCommentIcon"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentDiv);
             }
             /* [/if#attcomment] */
