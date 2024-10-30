@@ -55,6 +55,11 @@
             /* [/if#tooltips] */
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
 
+            /* ~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1] */
+            var dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon"><img src="/images/img/icon-time.png" height="14px"></span>';
+            $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttTimeInOutSpan);
+            /* [/if#atttimeinout] */
+
             /* ~[if#attcomment.pref.ptDailyAttCommentIcon=1] */
             // if the student has an attendance comment, then append a div with a linked
             // image to end of the student's .dailyAttData div
