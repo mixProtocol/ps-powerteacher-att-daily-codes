@@ -1,0 +1,58 @@
+<div class='studentAlert' id='alert-attcode-detail-~(studentfrn)' style="width:540px;">
+	<img class='alertImage' src='/images/img/btn_chair.png' />
+	<div class='alertContent'>
+	  <p class='alertHeader'>~(studentname)</p>
+    <p>Daily Attendance Detail<br /></p>
+    <!-- ~[tlist_sql;
+SELECT
+  TO_CHAR(att.Att_Date, 'MM/DD/YYYY') as attDate,
+  DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
+                                          'present','p') AS attstatus,
+  attc.ATT_Code AS attCd,
+  attc.description AS attDescr,
+  TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH:MI AM') AS attTimeIn,
+  TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH:MI AM') AS attTimeOut,
+  CASE
+    WHEN att.Att_Comment IS NULL THEN 0
+    WHEN LENGTH(TRIM(att.Att_Comment)) > 0 THEN 1
+    ELSE 0
+  END AS hascomment,
+  att.Att_Comment,
+  attt.atttm_comment  
+
+FROM Students s
+
+JOIN Attendance att
+  ON att.Id = '~(gpv.attid;sqlText)'
+ AND att.Att_Mode_Code = 'ATT_ModeDaily'
+ AND s.ID = att.StudentID
+
+JOIN Attendance_Code attc
+  ON att.Attendance_CodeID = attc.ID
+ 
+LEFT OUTER JOIN Attendance_Time attt
+  ON att.Id = attt.AttendanceID
+
+WHERE TO_CHAR('001' || s.Dcid) = ~(studentfrn)
+
+    ;] --> 
+    <table width="100%" style="border: 1px solid lightgray">
+      <tr>
+        <td><strong>Date</strong>:</td>
+        <td>~(attDate)</td>
+      </tr>
+      <tr data-attstatus="~(attStatus)">
+        <td><strong>Attendance Code</strong>:</td>
+        <td>~(attCd) : ~(attDescr)</td>
+      </tr>
+      <tr>
+        <td><strong>Time In</strong>:</td>
+        <td>~(attTimeIn)</td>
+      </tr>
+      <tr>
+        <td><strong>Time Out</strong>:</td>
+        <td>~(attTimeOut)</td>
+      </tr>
+    </table><!-- [/tlist_sql] -->
+	</div>
+</div>
