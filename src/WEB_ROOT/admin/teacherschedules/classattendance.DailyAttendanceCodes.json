@@ -36,7 +36,7 @@
   
     ORDER BY cc.Id
 	]
-    {"ccId":"~(ccId)","attDcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
+    {"ccId":"~(ccId)","attdcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
 	[/tlist_sql]
 	[/if#sec]
 {}]

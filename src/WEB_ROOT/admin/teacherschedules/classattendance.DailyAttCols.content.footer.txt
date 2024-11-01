@@ -56,7 +56,7 @@
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
 
             /* ~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1] */
-            var dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon"><img src="/images/img/icon-time.png" height="14px"></span>';
+            var dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><img src="/images/img/icon-time.png" height="14px"></span>';
             $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttTimeInOutSpan);
             /* [/if#atttimeinout] */
 
@@ -64,7 +64,7 @@
             // if the student has an attendance comment, then append a div with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hascomment == 1) {
-              var dailyAttCommentDiv = '<span class="dailyAttCommentIcon"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></span>';
+              var dailyAttCommentDiv = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentDiv);
             }
             /* [/if#attcomment] */

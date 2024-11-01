@@ -18,7 +18,7 @@ SELECT
 FROM Students s
 
 JOIN Attendance att
-  ON att.Id = '~(gpv.attid;sqlText)'
+  ON att.Dcid = ~(gpv.attdcid;num)
  AND att.Att_Mode_Code = 'ATT_ModeDaily'
  AND s.ID = att.StudentID
 
@@ -38,7 +38,7 @@ WHERE TO_CHAR('001' || s.Dcid) = ~(studentfrn)
       </tr>
       <tr data-attstatus="~(attStatus)">
         <td><strong>Attendance Code</strong>:</td>
-        <td>~(attCd) : ~(attDescr)</td>
+        <td>~(attCd)&nbsp;:&nbsp;~(attDescr)</td>
       </tr>
       <tr>
         <td><strong>Time In</strong>:</td>
