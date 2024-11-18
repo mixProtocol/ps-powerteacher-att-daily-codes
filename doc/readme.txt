@@ -12,6 +12,7 @@ Version 1.38 / 20241017.01 adds optional suport for the substiute portal.  This 
 Note: If "Show Multiple Sections" is enabled for the page, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
 Release History:
+1.39 / 20241118.01 - Fix for PSv24.11 compatibility
 1.38 / 20241017.01 - Substitute portal (optional) through prefs page
 1.37 / 20241016.01 - Add initial support for the substitute portal
 1.36 / 20241002.01 - Add compatibility for schools not using meeting attendance
