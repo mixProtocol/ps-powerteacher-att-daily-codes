@@ -35,8 +35,6 @@
       url: '/admin/teacherschedules/classattendance.DailyAttendanceCodes.json', 
       data: {
         "sectionid" : "~(gpv.sectionid;json)",
-        "frn" : "~(frn)",
-        "rn" : "~(rn)",
         "att_period" : "~(gpv.att_period;json)",
         "att_date" : "~(gpv.att_date;json)",
         "Att_Mode_Code" : "ATT_ModeMeeting",

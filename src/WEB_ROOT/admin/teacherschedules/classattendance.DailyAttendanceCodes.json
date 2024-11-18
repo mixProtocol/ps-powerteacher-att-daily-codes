@@ -28,7 +28,6 @@
      AND s.SchoolId = cc.SchoolId 
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid;num)')
-           OR TO_CHAR(ABS(cc.SectionID)) LIKE '~(rn)'
            OR 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)') )
   
     WHERE s.SchoolID = ~(curschoolid)
