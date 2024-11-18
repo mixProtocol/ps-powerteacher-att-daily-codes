@@ -7,7 +7,7 @@
 SELECT
   TO_CHAR(att.Att_Date, 'MM/DD/YYYY') as attDate,
   DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
-                                          'present','p') AS attstatus,
+                                          'present','p') AS attStatus,
   attc.ATT_Code AS attCd,
   attc.description AS attDescr,
   TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH:MI AM') AS attTimeIn,
