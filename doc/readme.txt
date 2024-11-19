@@ -5,13 +5,15 @@ This plugin adds a "Daily" column to the PowerTeacher "Record Meeting Attendance
 
 New:
 Version 1.35 / 20240927.01 resolves an issue that prevented the "Configure" button from displaying in the new Enhanced UI .  All users should upgrade to the latest version.  Version 1.35 also adds the option to display a small comment icon if the daily attendance code includes a comment.  A future version of the plugin will make this clickable so that the teacher can read that comment.
-Version 1.36 / 20241002.01 adds support for schools that aren't using meeting attendance to fill daily attendance.
-Version 1.37 / 20241016.01 adds initial support for the substitute portal.  For now, this is always enabled.  A future release will likely make this individually configurable through the plugin's preference page.
+Version 1.36 / 20241002.01 adds support for schools that aren't using meeting attendance to populate daily attendance.
 Version 1.38 / 20241017.01 adds optional suport for the substiute portal.  This can be enabled through plugin's preferences page.
+Version 1.39 / 20241118.01 fixes a critical issue with PSv24.11 that caused a JSON_ERROR. All users should upgrade to the latest version.
+
 
 Note: If "Show Multiple Sections" is enabled for the page, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
 Release History:
+1.40 / 20241118.02 - Better Preference Page descriptions
 1.39 / 20241118.01 - Fix for PSv24.11 compatibility
 1.38 / 20241017.01 - Substitute portal (optional) through prefs page
 1.37 / 20241016.01 - Add initial support for the substitute portal
