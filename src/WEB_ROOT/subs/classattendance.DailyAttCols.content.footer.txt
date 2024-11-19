@@ -22,11 +22,11 @@
 <script type="text/javascript" class="dailyAttScript">
   $j(function() {
     // append headers for attCode and attDescription
-    var dailyAttThs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
-    $j("th.cvDemarcation:last").next("th").prepend(dailyAttThs);
-    // append the td per-student
-    var dailyAttTds ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
-    $j("tr > td.cvDemarcation:first-child").next("td").prepend(dailyAttTds)
+    var dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
+    $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
+    // append divs td per-student
+    var dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
+    $j("tr > td.cvDemarcation:first-child").next("td").prepend(dailyAttStuData)
   
     $j.ajax({
       type: 'POST', 
@@ -46,7 +46,7 @@
       success: function(data) {
         for (i=0; i<data.length; i++){
           // look for the row w/ a ccid_XXXXXX that matches the ccid and
-          // replace the Daily TD values w/ the DailyAtt code and descr
+          // replace the daily student data cell values w/ the DailyAtt code and descr
           $j('#ccid_' + data[i].ccId).find('div.attCode').attr('data-attstatus',data[i].attstatus).html(data[i].attcd)
             /* ~[if#tooltips.pref.ptDailyAttCodesTooltip=1] */
             .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
