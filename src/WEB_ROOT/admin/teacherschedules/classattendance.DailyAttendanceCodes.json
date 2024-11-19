@@ -10,8 +10,8 @@
         DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
                                                 'present','p') AS attstatus,
         MAX(CASE
-          WHEN att.Att_Comment IS NULL THEN 0
-          WHEN LENGTH(TRIM(att.Att_Comment)) > 0 THEN 1
+          WHEN LENGTH(TRIM(TO_CHAR(att.Att_Comment))) > 0 THEN 1
+          WHEN LENGTH(TRIM(TO_CHAR(attt.AttTm_Comment))) > 0 THEN 1
           ELSE 0
         END) AS hascomment,
         MAX(CASE
