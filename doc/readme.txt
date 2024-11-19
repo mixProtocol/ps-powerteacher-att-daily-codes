@@ -14,7 +14,7 @@ Note: If "Show Multiple Sections" is enabled for the page, there may be a slight
 
 Release History:
 1.40 / 20241118.02 - Better Preference Page descriptions
-1.39 / 20241118.01 - Fix for PSv24.11 compatibility
+1.39 / 20241118.01 - Critical fix for PSv24.11 compatibility
 1.38 / 20241017.01 - Substitute portal (optional) through prefs page
 1.37 / 20241016.01 - Add initial support for the substitute portal
 1.36 / 20241002.01 - Add compatibility for schools not using meeting attendance
