@@ -23,7 +23,7 @@
     // append headers for attCode and attDescription
     var dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
     $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
-    // append divs td per-student
+    // append divs per-student
     var dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData)
   
