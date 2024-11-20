@@ -11,7 +11,7 @@
           const match = $j(el).text().trim().match("^" + searchText + "$")
           return match && match.length > 0;
         }
-        custPlgnVer = $j('#breadcrumbs a[href$="/admin/pluginconsole/plugInConsole.action"]:last')
+        const custPlgnVer = $j('#breadcrumbs a[href$="/admin/pluginconsole/plugInConsole.action"]:last')
           .parentsUntil('body').find('#content-main h1:textEquals("' + plgnName  + ' Setup")')
           .parent().find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginname]")').next('td:textEquals(' + plgnName + ')')
           .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationplugindesc]")').next('td:textEquals(' + plgnDesc + ')')
