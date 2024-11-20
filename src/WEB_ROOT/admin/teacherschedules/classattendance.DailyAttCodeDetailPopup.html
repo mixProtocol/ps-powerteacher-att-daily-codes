@@ -10,8 +10,8 @@ SELECT
                                           'present','p') AS attStatus,
   attc.ATT_Code AS attCd,
   attc.description AS attDescr,
-  TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH:MI AM') AS attTimeIn,
-  TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH:MI AM') AS attTimeOut,
+  TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeIn,
+  TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeOut,
   TRIM(TO_CHAR(att.Att_Comment)) AS attCodeComment,
   TRIM(TO_CHAR(attt.atttm_comment)) AS attTimeComment 
 
