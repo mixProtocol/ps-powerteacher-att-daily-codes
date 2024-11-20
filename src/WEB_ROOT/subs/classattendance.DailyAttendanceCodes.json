@@ -35,8 +35,6 @@
   
     WHERE s.SchoolID = ~(curschoolid)
       AND attc.ATT_Code IS NOT NULL
-  
-    ORDER BY cc.Id
 	]
 		{"sdcid":"~(sDcid)","ccId":"~(ccId)","attDcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
 	[/tlist_sql]

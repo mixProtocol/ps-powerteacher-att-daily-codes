@@ -44,8 +44,6 @@
 
     GROUP BY s.Dcid, cc.ID, att.Dcid, TO_CHAR(attc.ATT_Code),
              TO_CHAR(attc.description), attc.Presence_Status_CD
-  
-    ORDER BY cc.Id
 	]
     {"sdcid":"~(sDcid)","ccId":"~(ccId)","attdcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)","hastimeinout":"~(hastimeinout)"},
 	[/tlist_sql]
