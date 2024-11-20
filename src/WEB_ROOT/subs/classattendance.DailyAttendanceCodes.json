@@ -1,6 +1,7 @@
 [
 	~[tlist_sql; 
     SELECT
+        s.Dcid AS sDcid,
         cc.ID AS ccId,
         att.Dcid AS attDcid,
         attc.ATT_Code AS attcd,
@@ -37,6 +38,6 @@
   
     ORDER BY cc.Id
 	]
-		{"ccId":"~(ccId)","attDcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
+		{"sdcid":"~(sDcid)","ccId":"~(ccId)","attDcid":"~(attDcid)","attcd":"~(attcd)","attdescr":"~(attdescr)","attstatus":"~(attstatus)","hascomment":"~(hascomment)"},
 	[/tlist_sql]
 {}]
