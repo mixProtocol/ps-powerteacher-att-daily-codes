@@ -53,14 +53,12 @@
             /* [/if#tooltips] */
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
 
-            var boolIconEnabledAndUsed = false;
             /* ~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1] */
             // if the student has a time_in or time_out value, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hastimeinout == 1) {
               var dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/img/icon-time.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttTimeInOutSpan);
-              boolIconEnabledAndUsed = true;
             }
             /* [/if#atttimeinout] */
 
@@ -70,14 +68,8 @@
             if (data[i].hascomment == 1) {
               var dailyAttCommentSpan = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentSpan);
-              boolIconEnabledAndUsed = true;
             }
             /* [/if#attcomment] */
-
-            //if (boolIconEnabledAndUsed) {
-            //  var ancAttDetailPopop = '<a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"></a>';
-            //  $j('#ccid_' + data[i].ccId + ' .dailyAttData .dailyAttTimeInOutIcon, #ccid_' + data[i].ccId + ' .dailyAttData .dailyAttCommentIcon').wrapAll(ancAttDetailPopop);
-            //}
         }
       },
       // TODO: refactor error as fail
