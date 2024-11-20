@@ -28,7 +28,7 @@ JOIN Attendance_Code attc
 LEFT OUTER JOIN Attendance_Time attt
   ON att.Id = attt.AttendanceID
 
-WHERE TO_CHAR('001' || s.Dcid) = ~(studentfrn)
+WHERE s.Dcid = ~(rn)
 
     ;] --> 
     <table width="100%" style="border: 1px solid lightgray">
