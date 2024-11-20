@@ -2,13 +2,13 @@
   ~[if#action.~[gpv:action]=showConfigurePlugin]
     <script type="text/javascript" class="dailyAttScript">
       $j(function() {
-        var plgnName = "Daily AttCodes in PT Meeting Attendance";
-        var plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
-        var plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html"
+        const plgnName = "Daily AttCodes in PT Meeting Attendance";
+        const plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
+        const plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html"
 
         $j.expr[':'].textEquals = function(el, i, m) {
-          var searchText = m[3];
-          var match = $j(el).text().trim().match("^" + searchText + "$")
+          const searchText = m[3];
+          const match = $j(el).text().trim().match("^" + searchText + "$")
           return match && match.length > 0;
         }
         custPlgnVer = $j('#breadcrumbs a[href$="/admin/pluginconsole/plugInConsole.action"]:last')
@@ -18,7 +18,7 @@
           .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginversion]")').next('td').text()
         
         if (custPlgnVer.length > 0) {
-          custPlgnConfRow = '<tr><td><label>Configure Plugin</label></td><td><a href=' + plgnConfLink +' class="button">Configure</a></td></tr>';
+          const custPlgnConfRow = '<tr><td><label>Configure Plugin</label></td><td><a href=' + plgnConfLink +' class="button">Configure</a></td></tr>';
           $j('#pluginDetailTable').find('tr:last').after(custPlgnConfRow);
         }
       });

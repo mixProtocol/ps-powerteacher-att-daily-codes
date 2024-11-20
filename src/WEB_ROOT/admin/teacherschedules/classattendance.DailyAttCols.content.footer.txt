@@ -22,10 +22,10 @@
 <script type="text/javascript" class="dailyAttScript">
   $j(function() {
     // append headers for attCode and attDescription
-    var dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
+    const dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>'
     $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
     // append divs per-student
-    var dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
+    const dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>'
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData)
   
     $j.ajax({
@@ -57,7 +57,7 @@
             // if the student has a time_in or time_out value, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hastimeinout == 1) {
-              var dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/img/icon-time.png" height="14px"></a></span>';
+              const dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/img/icon-time.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttTimeInOutSpan);
             }
             /* [/if#atttimeinout] */
@@ -66,7 +66,7 @@
             // if the student has an attendance comment, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hascomment == 1) {
-              var dailyAttCommentSpan = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></a></span>';
+              const dailyAttCommentSpan = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentSpan);
             }
             /* [/if#attcomment] */
