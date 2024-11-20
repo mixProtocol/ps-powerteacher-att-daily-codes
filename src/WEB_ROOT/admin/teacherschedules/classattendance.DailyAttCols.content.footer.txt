@@ -76,7 +76,7 @@
 
             if (boolIconEnabledAndUsed) {
               var ancAttDetailPopop = '<a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"></a>';
-              $j('#ccid_' + data[i].ccId + ' .dailyAttData .dailyAttTimeInOutIcon,.dailyAttCommentIcon').wrapAll(ancAttDetailPopop);
+              $j('#ccid_' + data[i].ccId + ' .dailyAttData .dailyAttTimeInOutIcon, #ccid_' + data[i].ccId + ' .dailyAttData .dailyAttCommentIcon').wrapAll(ancAttDetailPopop);
             }
         }
       },
