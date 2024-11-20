@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		description="Daily Attendance Codes in PowerTeacher Meeting Att"
 		name="Daily AttCodes in PT Meeting Attendance"
 		version="20241118.02"
@@ -9,5 +9,10 @@
 	<publisher name="George Skuse">
 		<contact email="george.skuse@watertown.k12.ma.us"/>
 	</publisher>
-	
+
+  <autoinstall required="true">
+      <autoenable required="true" />
+      <autoredeploy />
+  </autoinstall>
+
 </plugin>
