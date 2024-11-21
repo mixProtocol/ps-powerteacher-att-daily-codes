@@ -4,18 +4,18 @@
       $j(function() {
         const plgnName = "Daily AttCodes in PT Meeting Attendance";
         const plgnDesc = "Daily Attendance Codes in PowerTeacher Meeting Att";
-        const plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html"
+        const plgnConfLink = "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html";
 
         $j.expr[':'].textEquals = function(el, i, m) {
           const searchText = m[3];
-          const match = $j(el).text().trim().match("^" + searchText + "$")
+          const match = $j(el).text().trim().match("^" + searchText + "$");
           return match && match.length > 0;
         }
         const custPlgnVer = $j('#breadcrumbs a[href$="/admin/pluginconsole/plugInConsole.action"]:last')
           .parentsUntil('body').find('#content-main h1:textEquals("' + plgnName  + ' Setup")')
           .parent().find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginname]")').next('td:textEquals(' + plgnName + ')')
           .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationplugindesc]")').next('td:textEquals(' + plgnDesc + ')')
-          .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginversion]")').next('td').text()
+          .parentsUntil('#pluginDetailTable').find('td:textEquals("~[text:psx.ftl.admin_pluginconsole.pcdashboard.configurationpluginversion]")').next('td').text();
         
         if (custPlgnVer.length > 0) {
           const custPlgnConfRow = '<tr><td><label>Configure Plugin</label></td><td><a href=' + plgnConfLink +' class="button">Configure</a></td></tr>';
