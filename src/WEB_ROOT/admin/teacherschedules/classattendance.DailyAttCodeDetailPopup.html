@@ -8,8 +8,9 @@ SELECT
   TO_CHAR(att.Att_Date, 'MM/DD/YYYY') as attDate,
   DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
                                           'present','p') AS attStatus,
-  attc.ATT_Code AS attCd,
   attc.description AS attDescr,
+  attc.ATT_Code AS attCd,
+
   TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeIn,
   TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeOut,
   TRIM(TO_CHAR(att.Att_Comment)) AS attCodeComment,
@@ -31,26 +32,28 @@ LEFT OUTER JOIN Attendance_Time attt
 WHERE s.Dcid = ~(rn)
 
     ;] --> 
-    <table width="100%" style="border: 1px solid lightgray">
+    
+    <table width="100%">
       <tr>
-        <td><strong>Date</strong>:</td>
-        <td>~(attDate)</td>
+        <td colspan="4"><strong>~(attDate)</strong><br /><span data-attstatus="~(attStatus)">~(attDescr)&nbsp;(~(attCd))</span></td>
       </tr>
-      <tr data-attstatus="~(attStatus)">
-        <td><strong>Attendance Code</strong>:</td>
-        <td>~(attCd)&nbsp;:&nbsp;~(attDescr)</td>
-      </tr>
+    </table>
+    <table width="100%">  
       <tr>
-        <td><strong>Time In</strong>:</td>
-        <td>~(attTimeIn)</td>
+        <th colspan="2" width="50%">Time In</th>
+        <th colspan="2" width="50%">Time Out</th>
       </tr>
       <tr>
-        <td><strong>Time Out</strong>:</td>
-        <td>~(attTimeOut)</td>
+        <td colspan="2">~(attTimeIn)</td>
+        <td colspan="2">~(attTimeOut)</td>
+      </tr>
+    </table>
+    <table width="100%"> 
+      <tr>
+        <th colspan="4">Comments</td>
       </tr>
       <tr>
-        <td><strong>Comments</strong>:</td>
-        <td>~(attCodeComment)<hr />~(attTimeComment)</td>
+        <td colspan="4">~(attCodeComment)<hr />~(attTimeComment)</td>
       </tr>
     </table><!-- [/tlist_sql] -->
 	</div>
