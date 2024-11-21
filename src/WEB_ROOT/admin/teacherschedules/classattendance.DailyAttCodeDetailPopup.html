@@ -1,8 +1,8 @@
-<div class='studentAlert' id='alert-attcode-detail-~(studentfrn)' style="width:540px;">
+<div class='studentAlert' id='alert-attcode-detail-~(studentfrn)' style="width:580px;">
 	<img class='alertImage' src='/images/img/btn_chair.png' />
 	<div class='alertContent'>
 	  <p class='alertHeader'>~(studentname)</p>
-    <p>Daily Attendance Detail<br /></p>
+
     <!-- ~[tlist_sql;
 SELECT
   TO_CHAR(att.Att_Date, 'MM/DD/YYYY') as attDate,
@@ -11,10 +11,25 @@ SELECT
   attc.description AS attDescr,
   attc.ATT_Code AS attCd,
 
+~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1]
+  TO_CHAR('') AS attTimeInOutDisplay,
   TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeIn,
   TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeOut,
+[else#atttimeinout] 
+  TO_CHAR('style="display'||CHR(58)||'none'||CHR(59)||'"')   AS attTimeInOutDisplay,
+  TO_CHAR('') AS attTimeIn,
+  TO_CHAR('') AS attTimeOut,
+[/if#atttimeinout] 
+
+~[if#attcomment.pref.ptDailyAttCommentIcon=1] 
+  TO_CHAR('') AS attCommentDisplay,
   TRIM(TO_CHAR(att.Att_Comment)) AS attCodeComment,
   TRIM(TO_CHAR(attt.atttm_comment)) AS attTimeComment 
+[else#attcomment]
+  TO_CHAR('style="display'||CHR(58)||'none'||CHR(59)||'"') AS attCommentDisplay,
+  TO_CHAR('') AS attCodeComment,
+  TO_CHAR('') AS attTimeComment
+[/if#attcomment]
 
 FROM Students s
 
@@ -38,7 +53,7 @@ WHERE s.Dcid = ~(rn)
         <td colspan="4"><strong>~(attDate)</strong><br /><span data-attstatus="~(attStatus)">~(attDescr)&nbsp;(~(attCd))</span></td>
       </tr>
     </table>
-    <table width="100%">  
+    <table width="100%" ~(attTimeInOutDisplay)>  
       <tr>
         <th colspan="2" width="50%">Time In</th>
         <th colspan="2" width="50%">Time Out</th>
@@ -48,7 +63,7 @@ WHERE s.Dcid = ~(rn)
         <td colspan="2">~(attTimeOut)</td>
       </tr>
     </table>
-    <table width="100%"> 
+    <table width="100%" ~(attCommentDisplay)> 
       <tr>
         <th colspan="4">Comments</td>
       </tr>
