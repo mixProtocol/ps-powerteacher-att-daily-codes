@@ -1,6 +1,8 @@
 ~[if#enabled.pref.ptDailyAttCodesAdminPortal=1]
+<!-- Based on a PS_HTML conditional (pref.ptDailyAttCodesSubsPortal=1), the dailyattcode plugin is enabled for the admin portal -->
 <style>
   /* ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1] */
+  /* Based on a PS_HTML conditional (pref.ptDailyAttRedBckgrndAbs=1), absences should get a red background */
   div.attCode[data-attstatus='a'], div.attDescr[data-attstatus='a'] {
     background-color: pink !important;
   }
@@ -49,11 +51,13 @@
           // replace the daily student data cell values w/ the DailyAtt code and descr
           $j('#ccid_' + data[i].ccId).find('div.attCode').attr('data-attstatus',data[i].attstatus).html(data[i].attcd)
             /* ~[if#tooltips.pref.ptDailyAttCodesTooltip=1] */
+            // Based on a PS_HTML conditional (pref.ptDailyAttCodesTooltip=1), attcode tooltips are enabled.
             .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
             /* [/if#tooltips] */
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
 
             /* ~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1] */
+            // Based on a PS_HTML conditional (pref.ptDailyAttTimeInOutIcon=1), the time in/out icon is enabled.
             // if the student has a time_in or time_out value, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hastimeinout == 1) {
@@ -63,6 +67,7 @@
             /* [/if#atttimeinout] */
 
             /* ~[if#attcomment.pref.ptDailyAttCommentIcon=1] */
+            // Based on a PS_HTML conditional (pref.ptDailyAttCommentIcon=1), the comment icon is enabled.
             // if the student has an attendance comment, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hascomment == 1) {

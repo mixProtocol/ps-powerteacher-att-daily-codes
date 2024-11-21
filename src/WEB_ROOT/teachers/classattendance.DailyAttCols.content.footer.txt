@@ -48,6 +48,7 @@
           // replace the daily student data cell values w/ the DailyAtt code and descr
           $j('#ccid_' + data[i].ccId).find('div.attCode').attr('data-attstatus',data[i].attstatus).html(data[i].attcd)
             /* ~[if#tooltips.pref.ptDailyAttCodesTooltip=1] */
+            // Based on a PS_HTML conditional (pref.ptDailyAttCodesTooltip=1), attcode tooltips are enabled.
             .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
             /* [/if#tooltips] */
             .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
@@ -61,6 +62,7 @@
   });
 </script>
 ~[if#legend.pref.ptDailyAttCodesDispLegend=1]
+<!-- Based on a PS_HTML conditional (pref.ptDailyAttCodesDispLegend=1), display the att_code_legend -->
 <div id="legend">
     <h3>~[text:psx.common.legend]</h3>
     <p><strong>~[text:psx.html.admin_attendance_view.daily.attendance_codes]</strong> ~[x:att_code_legend;studentschool]</p>
