@@ -29,6 +29,8 @@
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( TO_CHAR(ABS(cc.SectionID)) LIKE TO_CHAR('~(gpv.sectionid;num)')
            OR 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)') )
+     AND cc.ID in (~(gpv.CCIDs;sqlText))
+
     JOIN SectionTeacher st
       ON ABS(cc.SectionID) = st.SectionID
      AND st.TeacherID = '~[x:userid]'

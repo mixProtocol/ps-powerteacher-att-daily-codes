@@ -26,7 +26,14 @@
     // append divs per-student
     const dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData);
-  
+
+    // 'scrape' ccids from IDs within the attendance table
+    const ccids = $j('#attendance-table .studentrow[id^="ccid_"]')
+                // convert to IDs to integers (after removing the first 5 characters: 'ccid_') 
+                .map(function() { return parseInt(this.id.toString().slice(5,99),10); })
+                  // join integers into a comma-seperated list (no quotes)
+                .get().join(',');        
+
     $j.ajax({
       type: 'POST', 
       dataType: 'json',
@@ -39,7 +46,8 @@
         "Att_Mode_Code" : "ATT_ModeMeeting",
         "pagetype" : "~(gpv.pagetype;json)",
         "ATT_Source_Code" : "~(gpv.ATT_Source_Code;json)",
-        "Period_ID" : "~(gpv.Period_ID;json)"
+        "Period_ID" : "~(gpv.Period_ID;json)",
+        "CCIDs" : ccids.toString()
       },
       // TODO: refactor success as done
       success: function(data) {
