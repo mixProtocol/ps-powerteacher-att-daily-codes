@@ -57,7 +57,7 @@
             // if the student has a time_in or time_out value, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hastimeinout == 1) {
-              const dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/img/icon-time.png" height="14px"></a></span>';
+              const dailyAttTimeInOutSpan = '<span class="dailyAttTimeInOutIcon" data-attdcid="' + data[i].attdcid + '"><a title="Daily Attendance Detail" href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/img/icon-time.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttTimeInOutSpan);
             }
             /* [/if#atttimeinout] */
@@ -66,7 +66,7 @@
             // if the student has an attendance comment, then append a span with a linked
             // image to end of the student's .dailyAttData div
             if (data[i].hascomment == 1) {
-              const dailyAttCommentSpan = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '"><a href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></a></span>';
+              const dailyAttCommentSpan = '<span class="dailyAttCommentIcon" data-attdcid="' + data[i].attdcid + '"><a title="Daily Attendance Detail" href="classattendance.DailyAttCodeDetailPopup.html?frn=001' + data[i].sdcid + '&attdcid=' + data[i].attdcid + '" class="dialogM"><img src="/images/seatingchart/icon-comment-lrg-blue.png" height="14px"></a></span>';
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentSpan);
             }
             /* [/if#attcomment] */
