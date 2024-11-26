@@ -29,7 +29,7 @@
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( ABS(cc.SectionID) = (~(gpv.sectionid;num) - 0)
            OR ( 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)')
-                AND cc.ID in (~(gpv.CCIDs;sqlText)) ) ))
+                AND cc.ID in (~(gpv.CCIDs;sqlText)) ) )
 
     JOIN SectionTeacher st
       ON ABS(cc.SectionID) = st.SectionID
