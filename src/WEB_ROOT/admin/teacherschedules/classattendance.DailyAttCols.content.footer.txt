@@ -22,7 +22,7 @@
   }
 </style>
 <script type="text/javascript" class="dailyAttScript">
-  $j(function() {
+(function DailyAttCodesPlugin() {
     // append headers for attCode and attDescription
     const dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>';
     $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
@@ -53,16 +53,17 @@
         "CCIDs" : ccids.toString()
       },
       // TODO: refactor success as done
-      success: function(data) {
-        for (i=0; i<data.length; i++){
-          // look for the row w/ a ccid_XXXXXX that matches the ccid and
-          // replace the daily student data cell values w/ the DailyAtt code and descr
-          $j('#ccid_' + data[i].ccId).find('div.attCode').attr('data-attstatus',data[i].attstatus).html(data[i].attcd)
-            /* ~[if#tooltips.pref.ptDailyAttCodesTooltip=1] */
-            // Based on a PS_HTML conditional (pref.ptDailyAttCodesTooltip=1), attcode tooltips are enabled.
-            .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
-            /* [/if#tooltips] */
-            .next('div.attDescr').attr('data-attstatus',data[i].attstatus).html(data[i].attdescr);
+      success: function (data) {
+        $j(function () {
+          for (i = 0; i < data.length; i++) {
+            // look for the row w/ a ccid_XXXXXX that matches the ccid and
+            // replace the daily student data cell values w/ the DailyAtt code and descr
+            $j('#ccid_' + data[i].ccId).find('div.attCode').attr('data-attstatus', data[i].attstatus).html(data[i].attcd)
+              /* ~[if#tooltips.pref.ptDailyAttCodesTooltip=1] */
+              // Based on a PS_HTML conditional (pref.ptDailyAttCodesTooltip=1), attcode tooltips are enabled.
+              .attr("title", data[i].attdescr + " (" + data[i].attcd + ")")
+              /* [/if#tooltips] */
+              .next('div.attDescr').attr('data-attstatus', data[i].attstatus).html(data[i].attdescr);
 
             /* ~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1] */
             // Based on a PS_HTML conditional (pref.ptDailyAttTimeInOutIcon=1), the time in/out icon is enabled.
@@ -83,13 +84,16 @@
               $j('#ccid_' + data[i].ccId + ' .dailyAttData').append(dailyAttCommentSpan);
             }
             /* [/if#attcomment] */
-        }
+          }
+        });
       },
       // TODO: refactor error as fail
-      error: function() {
-        $j('div.attDescr').html('JSON error');  
+      error: function () {
+        $j(function () {
+          $j('div.attDescr').html('JSON error');
+        });
       }
     });
-  });
+  })();
 </script>
 [/if#enabled]
