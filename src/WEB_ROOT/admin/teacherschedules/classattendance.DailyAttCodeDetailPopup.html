@@ -3,33 +3,13 @@
 	<div class='alertContent'>
 	  <p class='alertHeader'>~(studentname)</p>
 
-    <!-- ~[tlist_sql;
+~[tlist_sql;
 SELECT
   TO_CHAR(att.Att_Date, 'MM/DD/YYYY') as attDate,
   DECODE (LOWER(attc.Presence_Status_CD), 'absent', 'a',
                                           'present','p') AS attStatus,
   attc.description AS attDescr,
-  attc.ATT_Code AS attCd,
-
-~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1]
-  TO_CHAR('') AS attTimeInOutDisplay,
-  TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeIn,
-  TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeOut,
-[else#atttimeinout] 
-  TO_CHAR('style="display'||CHR(58)||'none'||CHR(59)||'"')   AS attTimeInOutDisplay,
-  TO_CHAR('') AS attTimeIn,
-  TO_CHAR('') AS attTimeOut,
-[/if#atttimeinout] 
-
-~[if#attcomment.pref.ptDailyAttCommentIcon=1] 
-  TO_CHAR('') AS attCommentDisplay,
-  TRIM(TO_CHAR(att.Att_Comment)) AS attCodeComment,
-  TRIM(TO_CHAR(attt.atttm_comment)) AS attTimeComment 
-[else#attcomment]
-  TO_CHAR('style="display'||CHR(58)||'none'||CHR(59)||'"') AS attCommentDisplay,
-  TO_CHAR('') AS attCodeComment,
-  TO_CHAR('') AS attTimeComment
-[/if#attcomment]
+  attc.ATT_Code AS attCd
 
 FROM Students s
 
@@ -40,20 +20,39 @@ JOIN Attendance att
 
 JOIN Attendance_Code attc
   ON att.Attendance_CodeID = attc.ID
- 
-LEFT OUTER JOIN Attendance_Time attt
-  ON att.Id = attt.AttendanceID
-
+     
 WHERE s.Dcid = ~(rn)
-
-    ;] --> 
-    
+;] 
     <table width="100%">
       <tr>
         <td colspan="4"><strong>~(attDate)</strong><br /><span data-attstatus="~(attStatus)">~(attDescr)&nbsp;(~(attCd))</span></td>
       </tr>
     </table>
-    <table width="100%" ~(attTimeInOutDisplay)>  
+[/tlist_sql]
+
+
+~[if#atttimeinout.pref.ptDailyAttTimeInOutIcon=1]
+    <table width="100%">  
+~[tlist_sql;
+SELECT
+  TO_CHAR(TO_DATE(attt.Time_In, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeIn,
+  TO_CHAR(TO_DATE(attt.Time_Out, 'sssss'), 'HH' || CHR(58) || 'MI AM') AS attTimeOut
+
+FROM Students s
+
+JOIN Attendance att
+  ON att.Dcid = ~(gpv.attdcid;num)
+ AND att.Att_Mode_Code = 'ATT_ModeDaily'
+ AND s.ID = att.StudentID
+
+JOIN Attendance_Code attc
+  ON att.Attendance_CodeID = attc.ID
+   
+LEFT OUTER JOIN Attendance_Time attt
+  ON att.Id = attt.AttendanceID
+
+WHERE s.Dcid = ~(rn)
+;] 
       <tr>
         <th colspan="2" width="50%">Time In</th>
         <th colspan="2" width="50%">Time Out</th>
@@ -62,7 +61,29 @@ WHERE s.Dcid = ~(rn)
         <td colspan="2">~(attTimeIn)</td>
         <td colspan="2">~(attTimeOut)</td>
       </tr>
+[/tlist_sql]
     </table>
+[/if#atttimeinout] 
+  
+
+~[if#attcomment.pref.ptDailyAttCommentIcon=1]
+~[tlist_sql;
+SELECT
+  TRIM(TO_CHAR(att.Att_Comment)) AS attCodeComment,
+  TRIM(TO_CHAR(attt.atttm_comment)) AS attTimeComment 
+
+FROM Students s
+
+JOIN Attendance att
+  ON att.Dcid = ~(gpv.attdcid;num)
+ AND att.Att_Mode_Code = 'ATT_ModeDaily'
+ AND s.ID = att.StudentID
+
+LEFT OUTER JOIN Attendance_Time attt
+  ON att.Id = attt.AttendanceID
+
+WHERE s.Dcid = ~(rn)
+;] 
     <table width="100%" ~(attCommentDisplay)> 
       <tr>
         <th colspan="4">Comments</td>
@@ -70,6 +91,8 @@ WHERE s.Dcid = ~(rn)
       <tr>
         <td colspan="4">~(attCodeComment)<hr />~(attTimeComment)</td>
       </tr>
-    </table><!-- [/tlist_sql] -->
+    </table>
+[/tlist_sql]
+[/if#attcomment]
 	</div>
 </div>
