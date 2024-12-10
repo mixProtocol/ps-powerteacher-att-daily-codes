@@ -29,14 +29,14 @@
 
     let ccids = -1;
 
-    ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting]
+    /* ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting] */
     // 'scrape' ccids from IDs within the attendance table
     ccids = $j('#attendance-table .studentrow[id^="ccid_"]')
       // convert to IDs to integers (after removing the first 5 characters: 'ccid_') 
       .map(function () { return parseInt(this.id.toString().slice(5, 99), 10); })
       // join integers into a comma-seperated list (no quotes)
       .get().join(',');
-    [/if#PgTypeMultMtg]       
+    /* [/if#PgTypeMultMtg] */     
 
     $j.ajax({
       type: 'POST', 
