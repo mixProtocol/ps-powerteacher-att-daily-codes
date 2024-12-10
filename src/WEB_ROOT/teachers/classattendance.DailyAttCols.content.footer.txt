@@ -1,21 +1,26 @@
 <style>
   /* ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1] */
-  div.attCode[data-attstatus='a'], div.attDescr[data-attstatus='a'] {
+  div.attCode[data-attstatus='a'],
+  div.attDescr[data-attstatus='a'] {
     background-color: pink !important;
   }
+
   /* /if#redbckgrnd] */
+  
   div.dailyAttData {
-    display:inline;
-    white-space:nowrap;
-    padding-right:3px;
+    display: inline;
+    white-space: nowrap;
+    padding-right: 3px;
   }
-  div.attCode, div.attDescr {
-    display:inline-block;
-    white-space:nowrap;
-    min-width:4em;
-    padding-left:4px;
-    padding-right:4px;
-    font-size:smaller;
+
+  div.attCode,
+  div.attDescr {
+    display: inline-block;
+    white-space: nowrap;
+    min-width: 4em;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: smaller;
   }
 </style>
 <script type="text/javascript" class="dailyAttScript">
@@ -24,7 +29,7 @@
     const dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>';
     $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
     // append divs per-student
-    const dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
+    const dailyAttStuData = '<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData);
 
     let ccids = -1;
@@ -36,26 +41,26 @@
       .map(function () { return parseInt(this.id.toString().slice(5, 99), 10); })
       // join integers into a comma-seperated list (no quotes)
       .get().join(',');
-    /* [/if#PgTypeMultMtg] */     
+    /* [/if#PgTypeMultMtg] */
 
     $j.ajax({
-      type: 'POST', 
+      type: 'POST',
       dataType: 'json',
       cache: 'false',
-      url: '/teachers/classattendance.DailyAttendanceCodes.json', 
+      url: '/teachers/classattendance.DailyAttendanceCodes.json',
       data: {
-        "sectionid" : "~(gpv.sectionid;json)",
-        "att_period" : "~(gpv.att_period;json)",
-        "att_date" : "~(gpv.att_date;json)",
-        "Att_Mode_Code" : "ATT_ModeMeeting",
-        "pagetype" : "~(gpv.pagetype;json)",
-        "ATT_Source_Code" : "~(gpv.ATT_Source_Code;json)",
-        "Period_ID" : "~(gpv.Period_ID;json)",
-        "CCIDs" : ccids.toString()
+        "sectionid": "~(gpv.sectionid;json)",
+        "att_period": "~(gpv.att_period;json)",
+        "att_date": "~(gpv.att_date;json)",
+        "Att_Mode_Code": "ATT_ModeMeeting",
+        "pagetype": "~(gpv.pagetype;json)",
+        "ATT_Source_Code": "~(gpv.ATT_Source_Code;json)",
+        "Period_ID": "~(gpv.Period_ID;json)",
+        "CCIDs": ccids.toString()
       },
       // TODO: refactor success as done
-      success: function(data) {
-        $j(function() {
+      success: function (data) {
+        $j(function () {
           for (i = 0; i < data.length; i++) {
             // look for the row w/ a ccid_XXXXXX that matches the ccid and
             // replace the daily student data cell values w/ the DailyAtt code and descr
@@ -80,7 +85,8 @@
 ~[if#legend.pref.ptDailyAttCodesDispLegend=1]
 <!-- Based on a PS_HTML conditional (pref.ptDailyAttCodesDispLegend=1), display the att_code_legend -->
 <div id="legend">
-    <h3>~[text:psx.common.legend]</h3>
-    <p><strong>~[text:psx.html.admin_attendance_view.daily.attendance_codes]</strong> ~[x:att_code_legend;studentschool]</p>
+  <h3>~[text:psx.common.legend]</h3>
+  <p><strong>~[text:psx.html.admin_attendance_view.daily.attendance_codes]</strong> ~[x:att_code_legend;studentschool]
+  </p>
 </div>
 [/if#legend]

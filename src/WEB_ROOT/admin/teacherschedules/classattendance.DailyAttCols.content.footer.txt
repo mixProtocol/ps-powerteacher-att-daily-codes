@@ -3,31 +3,35 @@
 <style>
   /* ~[if#redbckgrnd.pref.ptDailyAttRedBckgrndAbs=1] */
   /* Based on a PS_HTML conditional (pref.ptDailyAttRedBckgrndAbs=1), absences should get a red background */
-  div.attCode[data-attstatus='a'], div.attDescr[data-attstatus='a'] {
+  div.attCode[data-attstatus='a'],
+  div.attDescr[data-attstatus='a'] {
     background-color: pink !important;
   }
+
   /* [/if#redbckgrnd] */
   div.dailyAttData {
-    display:inline;
-    white-space:nowrap;
-    padding-right:3px;
+    display: inline;
+    white-space: nowrap;
+    padding-right: 3px;
   }
-  div.attCode, div.attDescr {
-    display:inline-block;
-    white-space:nowrap;
-    min-width:4em;
-    padding-left:4px;
-    padding-right:4px;
-    font-size:smaller;
+
+  div.attCode,
+  div.attDescr {
+    display: inline-block;
+    white-space: nowrap;
+    min-width: 4em;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: smaller;
   }
 </style>
 <script type="text/javascript" class="dailyAttScript">
-(function DailyAttCodesPlugin() {
+  (function DailyAttCodesPlugin() {
     // append headers for attCode and attDescription
     const dailyAttColHdrs = '<div class="dailyAttData"><div class="attCode" align="right">&nbsp;</div><div class="attDescr" align="left">Daily</div></div>';
     $j("th.cvDemarcation:last").next("th").prepend(dailyAttColHdrs);
     // append divs per-student
-    const dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
+    const dailyAttStuData = '<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData);
 
     let ccids = -1;
@@ -39,22 +43,22 @@
       .map(function () { return parseInt(this.id.toString().slice(5, 99), 10); })
       // join integers into a comma-seperated list (no quotes)
       .get().join(',');
-    /* [/if#PgTypeMultMtg] */                
-  
+    /* [/if#PgTypeMultMtg] */
+
     $j.ajax({
-      type: 'POST', 
+      type: 'POST',
       dataType: 'json',
       cache: 'false',
-      url: '/admin/teacherschedules/classattendance.DailyAttendanceCodes.json', 
+      url: '/admin/teacherschedules/classattendance.DailyAttendanceCodes.json',
       data: {
-        "sectionid" : "~(gpv.sectionid;json)",
-        "att_period" : "~(gpv.att_period;json)",
-        "att_date" : "~(gpv.att_date;json)",
-        "Att_Mode_Code" : "ATT_ModeMeeting",
-        "pagetype" : "~(gpv.pagetype;json)",
-        "ATT_Source_Code" : "~(gpv.ATT_Source_Code;json)",
-        "Period_ID" : "~(gpv.Period_ID;json)",
-        "CCIDs" : ccids.toString()
+        "sectionid": "~(gpv.sectionid;json)",
+        "att_period": "~(gpv.att_period;json)",
+        "att_date": "~(gpv.att_date;json)",
+        "Att_Mode_Code": "ATT_ModeMeeting",
+        "pagetype": "~(gpv.pagetype;json)",
+        "ATT_Source_Code": "~(gpv.ATT_Source_Code;json)",
+        "Period_ID": "~(gpv.Period_ID;json)",
+        "CCIDs": ccids.toString()
       },
       // TODO: refactor success as done
       success: function (data) {
