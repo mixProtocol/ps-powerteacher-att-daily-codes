@@ -30,12 +30,16 @@
     const dailyAttStuData ='<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData);
 
+    let ccids = -1;
+
+    ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting]
     // 'scrape' ccids from IDs within the attendance table
-    const ccids = $j('#attendance-table .studentrow[id^="ccid_"]')
-	                  // convert to IDs to integers (after removing the first 5 characters: 'ccid_') 
-                    .map(function() { return parseInt(this.id.toString().slice(5,99),10); })
-                     // join integers into a comma-seperated list (no quotes)
-	                  .get().join(',');                                                       
+    ccids = $j('#attendance-table .studentrow[id^="ccid_"]')
+      // convert to IDs to integers (after removing the first 5 characters: 'ccid_') 
+      .map(function () { return parseInt(this.id.toString().slice(5, 99), 10); })
+      // join integers into a comma-seperated list (no quotes)
+      .get().join(',');
+    [/if#PgTypeMultMtg]                                                
   
     $j.ajax({
       type: 'POST', 

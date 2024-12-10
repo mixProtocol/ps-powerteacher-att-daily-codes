@@ -15,21 +15,26 @@
         END AS hascomment
 
     FROM Students s
+
     JOIN Attendance att
       ON s.ID = att.StudentID
      AND s.SchoolId = att.SchoolId
      AND att.Att_Mode_Code = 'ATT_ModeDaily'
      AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date;sqlText)'))
+
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
      AND s.SchoolId = attc.SchoolId
+
     JOIN CC cc
       ON att.StudentID = cc.StudentID
      AND s.SchoolId = cc.SchoolId
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( ABS(cc.SectionID) = (~(gpv.sectionid;num) - 0)
-           OR ( 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)')
-                AND cc.ID in (~(gpv.CCIDs;sqlText)) ) )
+      ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting]
+           OR cc.ID in (~(gpv.CCIDs;sqlText))
+      [/if#PgTypeMultMtg]
+         )
 
     JOIN SectionTeacher st
       ON ABS(cc.SectionID) = st.SectionID

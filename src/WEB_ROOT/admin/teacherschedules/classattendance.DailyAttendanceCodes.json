@@ -21,24 +21,31 @@
           WHEN attt.Time_Out > 0 THEN 1
           ELSE 0
         END) AS hastimeinout
+
     FROM Students s
+
     JOIN Attendance att
       ON s.ID = att.StudentID
      AND s.SchoolId = att.SchoolId
      AND TRUNC(att.Att_Date) = TRUNC(TO_DATE('~(gpv.att_date;sqlText)'))
      AND att.Att_Mode_Code = 'ATT_ModeDaily'
+
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
      AND s.SchoolId = attc.SchoolId
+
     LEFT OUTER JOIN Attendance_Time attt
       ON att.Id = attt.AttendanceID
+      
     JOIN CC cc
       ON att.StudentID = cc.StudentID
      AND s.SchoolId = cc.SchoolId 
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
      AND ( ABS(cc.SectionID) = (~(gpv.sectionid;num) - 0)
-           OR ( 'multimeeting' LIKE LOWER('~(gpv.pagetype;sqlText)')
-                AND cc.ID in (~(gpv.CCIDs;sqlText)) ) )
+      ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting]
+           OR cc.ID in (~(gpv.CCIDs;sqlText))
+      [/if#PgTypeMultMtg]
+         )
   
     WHERE s.SchoolID = ~(curschoolid)
       AND attc.ATT_Code IS NOT NULL
