@@ -13,6 +13,7 @@ Version 1.39 / 20241118.01 fixes a critical issue with PSv24.11 that caused a JS
 Note: If "Show Multiple Sections" is enabled for the page, there may be a slight delay before the daily codes are displayed.  I hope to address this in a future release.
 
 Release History:
+  -- / 20241211.01 - Performance improvements (internal release)
 1.40 / 20241118.02 - Better Preference Page descriptions
 1.39 / 20241118.01 - Critical fix for PSv24.11 compatibility
 1.38 / 20241017.01 - Substitute portal (optional) through prefs page
