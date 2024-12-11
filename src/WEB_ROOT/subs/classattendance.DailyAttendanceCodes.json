@@ -25,15 +25,12 @@
     JOIN Attendance_Code attc
       ON att.Attendance_CodeID = attc.ID
      AND s.SchoolId = attc.SchoolId
+
     JOIN CC cc
       ON att.StudentID = cc.StudentID
-     AND s.SchoolId = cc.SchoolId
+     AND s.SchoolId = cc.SchoolId 
      AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
-     AND ( ABS(cc.SectionID) = (~(gpv.sectionid;num) - 0)
-      ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting]
-           OR cc.ID in (~(gpv.CCIDs;sqlText))
-      [/if#PgTypeMultMtg]
-         )
+     AND ABS(cc.SectionID) IN (~(gpv.sectionids;sqlText))
 
     JOIN SectionTeacher st
       ON ABS(cc.SectionID) = st.SectionID

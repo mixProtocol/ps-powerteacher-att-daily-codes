@@ -32,16 +32,14 @@
     const dailyAttStuData = '<div class="dailyAttData"><div class="attCode" align="right">-</div><div class="attDescr" align="left">--</div></div>';
     $j("tr > td:first-child").siblings("td.cvDemarcation").next("td").prepend(dailyAttStuData);
 
-    let ccids = -1;
-
-    /* ~[if#PgTypeMultMtg.gpv.pagetype=MultiMeeting] */
-    // 'scrape' ccids from IDs within the attendance table
-    ccids = $j('#attendance-table .studentrow[id^="ccid_"]')
-      // convert to IDs to integers (after removing the first 5 characters: 'ccid_') 
-      .map(function () { return parseInt(this.id.toString().slice(5, 99), 10); })
-      // join integers into a comma-seperated list (no quotes)
-      .get().join(',');
-    /* [/if#PgTypeMultMtg] */
+    // when pagetype=='MultiMeeting', the sectionids of the (many) sections that
+    // are meeting will be in $j('input[name=MultiSection]'
+    let sectionids;
+    if ($j('input[name=MultiSection]').val()) {
+      sectionids = $j('input[name=MultiSection]').val().replaceAll(";", ",");
+    } else {
+      sectionids = '~(gpv.sectionid;num)';
+    }
 
     $j.ajax({
       type: 'POST',
@@ -49,14 +47,13 @@
       cache: 'false',
       url: '/teachers/classattendance.DailyAttendanceCodes.json',
       data: {
-        "sectionid": "~(gpv.sectionid;json)",
+        "sectionids": sectionids.toString(),
         "att_period": "~(gpv.att_period;json)",
         "att_date": "~(gpv.att_date;json)",
         "Att_Mode_Code": "ATT_ModeMeeting",
         "pagetype": "~(gpv.pagetype;json)",
         "ATT_Source_Code": "~(gpv.ATT_Source_Code;json)",
-        "Period_ID": "~(gpv.Period_ID;json)",
-        "CCIDs": ccids.toString()
+        "Period_ID": "~(gpv.Period_ID;json)"
       },
       // TODO: refactor success as done
       success: function (data) {
