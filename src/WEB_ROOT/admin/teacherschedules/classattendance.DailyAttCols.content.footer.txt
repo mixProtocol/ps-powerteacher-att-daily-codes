@@ -45,6 +45,15 @@
       .get().join(',');
     /* [/if#PgTypeMultMtg] */
 
+    // when pagetype=='MultiMeeting', the sectionids of the (many) sections that
+    // are meeting will be in $j('input[name=MultiSection]'
+    let sectionids;
+    if ($j('input[name=MultiSection]').val()) {
+      sectionids = $j('input[name=MultiSection]').val().replaceAll(";", ",");
+    } else {
+      sectionids = '~(gpv.sectionid;num)';
+    }
+
     $j.ajax({
       type: 'POST',
       dataType: 'json',
