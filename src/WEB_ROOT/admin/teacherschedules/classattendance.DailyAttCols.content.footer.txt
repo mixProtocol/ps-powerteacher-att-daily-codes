@@ -60,14 +60,15 @@
       cache: 'false',
       url: '/admin/teacherschedules/classattendance.DailyAttendanceCodes.json',
       data: {
-        "sectionid": "~(gpv.sectionid;json)",
+        // "sectionid": "~(gpv.sectionid;json)",
+        "sectionids": sectionids.toString(),
         "att_period": "~(gpv.att_period;json)",
         "att_date": "~(gpv.att_date;json)",
         "Att_Mode_Code": "ATT_ModeMeeting",
         "pagetype": "~(gpv.pagetype;json)",
         "ATT_Source_Code": "~(gpv.ATT_Source_Code;json)",
-        "Period_ID": "~(gpv.Period_ID;json)",
-        "CCIDs": ccids.toString()
+        "Period_ID": "~(gpv.Period_ID;json)" //,
+        // "CCIDs": ccids.toString()
       },
       // TODO: refactor success as done
       success: function (data) {
