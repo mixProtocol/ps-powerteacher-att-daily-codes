@@ -52,6 +52,7 @@ LEFT OUTER JOIN Attendance_Time attt
   ON att.Id = attt.AttendanceID
 
 WHERE s.Dcid = ~(rn)
+ORDER BY attt.Time_In ASC, attt.Time_Out ASC
 ;] 
       <tr>
         <th colspan="2" width="50%">Time In</th>
