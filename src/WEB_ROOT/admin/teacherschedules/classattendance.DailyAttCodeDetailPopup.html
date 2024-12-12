@@ -18,14 +18,13 @@ JOIN Attendance att
  AND att.Att_Mode_Code = 'ATT_ModeDaily'
  AND s.ID = att.StudentID
 
-JOIN Attendance_Code attc
-  ON att.Attendance_CodeID = attc.ID
+JOIN Attendance_Code attc ON att.Attendance_CodeID = attc.ID
      
 WHERE s.Dcid = ~(rn)
 ;] 
     <table width="100%">
       <tr>
-        <td colspan="4"><strong>~(attDate)</strong><br /><span data-attstatus="~(attStatus)">~(attDescr)&nbsp;(~(attCd))</span></td>
+        <td colspan="4"><strong>~(attDate;encodehtml)</strong><br /><span data-attstatus="~(attStatus;encodehtml)">~(attDescr;encodehtml)&nbsp;(~(attCd;encodehtml))</span></td>
       </tr>
     </table>
 [/tlist_sql]
@@ -45,11 +44,8 @@ JOIN Attendance att
  AND att.Att_Mode_Code = 'ATT_ModeDaily'
  AND s.ID = att.StudentID
 
-JOIN Attendance_Code attc
-  ON att.Attendance_CodeID = attc.ID
-   
-LEFT OUTER JOIN Attendance_Time attt
-  ON att.Id = attt.AttendanceID
+JOIN Attendance_Code attc ON att.Attendance_CodeID = attc.ID
+JOIN Attendance_Time attt ON att.Id = attt.AttendanceID
 
 WHERE s.Dcid = ~(rn)
 ORDER BY attt.Time_In ASC, attt.Time_Out ASC
@@ -59,8 +55,8 @@ ORDER BY attt.Time_In ASC, attt.Time_Out ASC
         <th colspan="2" width="50%">Time Out</th>
       </tr>
       <tr>
-        <td colspan="2">~(attTimeIn)</td>
-        <td colspan="2">~(attTimeOut)</td>
+        <td colspan="2">~(attTimeIn;encodehtml)</td>
+        <td colspan="2">~(attTimeOut;encodehtml)</td>
       </tr>
 [/tlist_sql]
     </table>
@@ -80,8 +76,7 @@ JOIN Attendance att
  AND att.Att_Mode_Code = 'ATT_ModeDaily'
  AND s.ID = att.StudentID
 
-LEFT OUTER JOIN Attendance_Time attt
-  ON att.Id = attt.AttendanceID
+LEFT OUTER JOIN Attendance_Time attt ON att.Id = attt.AttendanceID
 
 WHERE s.Dcid = ~(rn)
 ;] 
@@ -90,7 +85,7 @@ WHERE s.Dcid = ~(rn)
         <th colspan="4">Comments</td>
       </tr>
       <tr>
-        <td colspan="4">~(attCodeComment)<hr />~(attTimeComment)</td>
+        <td colspan="4">~(attCodeComment;encodehtml)<hr />~(attTimeComment;encodehtml)</td>
       </tr>
     </table>
 [/tlist_sql]
