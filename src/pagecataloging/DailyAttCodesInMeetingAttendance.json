@@ -2,7 +2,7 @@
   "pages": [
     {
       "htmlID": "navDailyAttCodesInMtgAttendancePluginPrefs",
-      "title": "Config Daily Codes in Meeting Attendance",
+      "title": "Daily Code Column in Meeting Attendance",
       "version": "2024.12.11.01",
       "contextType": "main",
       "sortOrder": 900,
