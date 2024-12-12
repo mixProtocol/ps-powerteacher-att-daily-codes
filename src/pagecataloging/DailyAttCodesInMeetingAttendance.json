@@ -3,7 +3,7 @@
     {
       "htmlID": "navDailyAttCodesInMtgAttendancePluginPrefs",
       "title": "Daily Code Column in Meeting Attendance",
-      "version": "2024.12.11.03",
+      "version": "2024.12.11.04",
       "contextType": "main",
       "sortOrder": 900,
       "pageURL": "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html",
