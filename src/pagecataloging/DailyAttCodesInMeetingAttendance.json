@@ -2,12 +2,12 @@
   "pages": [
     {
       "htmlID": "navDailyAttCodesInMtgAttendancePluginPrefs",
-      "title": "Daily Attentance Codes in Meeting Attendance - Plugin Preferences",
+      "title": "Config Daily Codes in Meeting Attendance",
       "version": "2024.12.11.01",
       "contextType": "main",
       "sortOrder": 900,
       "pageURL": "/admin/pluginconsole/pluginprefs/ptdailyattprefs.html",
-      "pageDescription": "Daily Attentance Codes in Meeting Attendance - Plugin Preferences",
+      "pageDescription": "Daily Attendance Codes in Meeting Attendance - Plugin Preferences",
       "districtLevelContext": 2,
       "parentHTMLID": "navDistrictManagementAttendance"
     }
