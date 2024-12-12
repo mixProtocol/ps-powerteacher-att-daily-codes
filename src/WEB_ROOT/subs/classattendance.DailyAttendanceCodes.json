@@ -29,7 +29,7 @@
     JOIN CC cc
       ON att.StudentID = cc.StudentID
      AND s.SchoolId = cc.SchoolId 
-     AND FLOOR(ABS(cc.TermID)/100) = ~(curyearid)
+     AND ABS(cc.TermID) BETWEEN ~(curyearid)00 AND ~(curyearid)99
      AND ABS(cc.SectionID) IN (~(gpv.sectionids;sqlText))
 
     JOIN SectionTeacher st
